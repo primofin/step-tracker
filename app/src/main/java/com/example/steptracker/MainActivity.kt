@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         val reportFragment = ReportFragment()
         val healthFragment = HealthFragment()
         val moreFragment = MoreFragment()
-        //Set one of the items already selected to show on the screen
+        //Set the initial fragment to show
         if (savedInstanceState == null) {
-            bottom_navigation.selectedItemId = R.id.b1_today
+            setCurrentFragment(todayFragment)
         }
         //Set a listener that will be notified when a bottom navigation item is selected
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.main_fragment, fragment)

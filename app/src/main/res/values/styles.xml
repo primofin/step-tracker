@@ -5,7 +5,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+<!--        <item name="materialButtonStyle">@style/Widget.MyApp.MyButton</item>-->
     </style>
-
-
+    <style name="Widget.MyApp.MyButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorSecondary</item>
+    </style>
 </resources>

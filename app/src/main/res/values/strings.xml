@@ -1,9 +1,20 @@
 <resources>
     <string name="app_name">Step Tracker</string>
+    <!--    strings used for today fragment-->
     <string name="today">Today</string>
+    <string name="cToday">TODAY</string>
+    <string name="step_default">Goal:6000\n0\n Steps</string>
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
     <string name="report">Report</string>
+    <!--    strings used for health fragment-->
     <string name="health">Health</string>
+    <string name="cHealth">HEALTH</string>
+    <string name="weightLable">Weight</string>
+    <string name="weightValue">50 kg</string>
+    <string name="heightLabel">Height</string>
+    <string name="heightValue">167 cm</string>
+    <string name="bmi">BMI(kg/m2): 17.92</string>
     <string name="more">More</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
