@@ -29,6 +29,7 @@ class CounterStep : AppCompatActivity(), SensorEventListener, StepListener {
 
         btnStart.setOnClickListener(View.OnClickListener {
             numSteps = 0
+            stepValue.text = TEXT_NUM_STEPS + numSteps.toString()
             sensorManager!!.registerListener(this, sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_FASTEST)
         })
 
