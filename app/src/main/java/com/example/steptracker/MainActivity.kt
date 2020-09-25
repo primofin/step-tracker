@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.b1_today -> setCurrentFragment(todayFragment)
                 R.id.b2_report -> setCurrentFragment(reportFragment)
                 R.id.b3_health -> setCurrentFragment(healthFragment)
-                R.id.b4_more -> setCurrentFragment(moreFragment)
+                R.id.b4_profile -> setCurrentFragment(moreFragment)
             }
             true
         }

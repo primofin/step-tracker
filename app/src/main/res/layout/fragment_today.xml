@@ -24,18 +24,19 @@
 
     <LinearLayout
         android:layout_width="409dp"
-        android:layout_height="464dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/circleTv"
-            android:layout_width="195dp"
-            android:layout_height="192dp"
+            android:layout_width="150dp"
+            android:layout_height="152dp"
             android:layout_marginStart="110dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="106dp"
@@ -44,16 +45,25 @@
             android:gravity="center"
             android:text="@string/step_default"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="60sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step"
+            android:textColor="@color/textPrimary"
+            android:textSize="18sp" />
+
         <Button
             android:id="@+id/startBtn"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="sans-serif-black"
             android:text="@string/start"
             android:theme="@style/Widget.MyApp.MyButton" />
 
@@ -61,6 +71,8 @@
             android:id="@+id/stopBtn"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:backgroundTint="@color/red"
+            android:fontFamily="sans-serif-black"
             android:text="@string/stop"
             tools:layout_editor_absoluteX="169dp"
             tools:layout_editor_absoluteY="393dp" />

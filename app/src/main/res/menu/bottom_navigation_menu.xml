@@ -17,8 +17,8 @@
         android:title="@string/health"
         android:visible="true" />
     <item
-        android:id="@+id/b4_more"
-        android:icon="@drawable/ic_action_more"
-        android:title="@string/more"
+        android:id="@+id/b4_profile"
+        android:icon="@drawable/ic_action_profile"
+        android:title="@string/my_profile"
         android:visible="true" />
 </menu>
