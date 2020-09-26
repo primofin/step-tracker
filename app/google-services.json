@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1093278442381",
+    "firebase_url": "https://fiery-cabinet-275110.firebaseio.com",
+    "project_id": "fiery-cabinet-275110",
+    "storage_bucket": "fiery-cabinet-275110.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093278442381:android:e772288a41debfbb4713c4",
+        "android_client_info": {
+          "package_name": "com.example.steptracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093278442381-606pr3utsb9ob40vv5q3uosdnebk74vs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxYSFRCqyFKIclU245_A15Guuvt1QQ1Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093278442381-606pr3utsb9ob40vv5q3uosdnebk74vs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

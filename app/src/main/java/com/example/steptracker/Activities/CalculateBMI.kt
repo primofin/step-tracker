@@ -1,5 +1,6 @@
 package com.example.steptracker.Activities
 
+import Objects.InternalFileStorageManager.dataFile
 import android.content.Context
 import android.os.Bundle
 import android.widget.EditText
@@ -11,6 +12,7 @@ import android.view.View
 
 
 class CalculateBMI : AppCompatActivity() {
+    var dataFileList = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculate_b_m_i)
