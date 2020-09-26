@@ -1,5 +1,7 @@
 package com.example.steptracker.Activities
 
+import Objects.InternalFileStorageManager
+import Objects.InternalFileStorageManager.stepFile
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -11,6 +13,7 @@ import android.view.View
 import com.example.steptracker.Listener.StepListener
 import com.example.steptracker.R
 import com.example.steptracker.sensorsHandler.StepDetector
+import kotlinx.android.synthetic.main.activity_calculate_b_m_i.*
 import kotlinx.android.synthetic.main.activity_counter_step.*
 
 class CounterStep : AppCompatActivity(), SensorEventListener, StepListener {
@@ -18,10 +21,13 @@ class CounterStep : AppCompatActivity(), SensorEventListener, StepListener {
     private var sensorManager: SensorManager? = null
     private val TEXT_NUM_STEPS = "Number of Steps: "
     private var numSteps: Int = 0
+    private var fileContent: String? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_counter_step)
-
+        //readDataFromFile()
         // Get an instance of the SensorManager
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         simpleStepDetector = StepDetector()
@@ -47,6 +53,21 @@ class CounterStep : AppCompatActivity(), SensorEventListener, StepListener {
     override fun step(timeNs: Long) {
         numSteps++
         stepValue.text = TEXT_NUM_STEPS.plus(numSteps)
+        //writeDataToFile()
+    }
+    private fun readDataFromFile()
+    {
+        fileContent = this!!.openFileInput(stepFile)?.bufferedReader().use {
+            it?.readText() ?:"Read failed"
+        }
+        if (fileContent != null) numSteps = Integer.parseInt(fileContent)
+    }
+    private fun writeDataToFile()
+    {
+        //mode private = rewrite the file. mode_append = add content to the file
+        this!!.openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_PRIVATE).use {
+            it.write("$numSteps".toByteArray())
+        }
     }
 
 }

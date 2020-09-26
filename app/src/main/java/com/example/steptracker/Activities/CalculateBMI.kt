@@ -17,6 +17,7 @@ class CalculateBMI : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculate_b_m_i)
         btnCalculate.setOnClickListener{
+            readDataFromFile()
             calculateBMI()
         }
     }
@@ -31,6 +32,7 @@ class CalculateBMI : AppCompatActivity() {
     }
     private fun writeDataToFile()
     {
+
         //mode private = rewrite the file. mode_append = add content to the file
         this!!.openFileOutput(dataFile, Context.MODE_PRIVATE).use {
             it.write("${weightValue.text}\n".toByteArray())
