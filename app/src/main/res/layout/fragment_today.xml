@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_color"
     android:hapticFeedbackEnabled="false"
-    tools:context=".TodayFragment">
+    tools:context=".Fragment.TodayFragment">
 
     <TextView
         android:id="@+id/tvHeader1"
