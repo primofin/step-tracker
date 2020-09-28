@@ -113,9 +113,10 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
                 if (current.toString() == stepFileList[1])  //Check if it is still a same day
                     numSteps = Integer.parseInt(stepFileList[0])    //Get today step
                 else {
+
                     numSteps = 0    //init a new day record
                     activity!!.openFileOutput(reportStepFile, Context.MODE_APPEND).use {
-                        it.write("a line test".toByteArray())
+                        it.write("${stepFileList[0]}\n".toByteArray())
                     }
                     activity!!.openFileInput(reportStepFile)?.bufferedReader()?.useLines { lines ->
                         lines.forEach { reportStepFileList.add(it) }    //Get a record
@@ -123,13 +124,14 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
                     if (reportStepFileList.size < 8) {  //Check if it is already 7 days in record
                         activity!!.openFileOutput(reportStepFile, Context.MODE_PRIVATE).use {
                             //write again from the beginning due to the test
-                            for ( i in 0..reportStepFileList.size - 2)
+                            for ( i in 0..reportStepFileList.size - 1)
                             {
                                 it.write("${reportStepFileList[i]}\n".toByteArray())
                             }
                         }
                         activity!!.openFileOutput(reportDateFile, Context.MODE_APPEND).use {
-                            it.write("$current\n".toByteArray())    // no need for date file because no test here
+                            //current.minusDays(1)
+                            it.write("${current.minusDays(1)}\n".toByteArray())    // no need for date file because no test here
                         }
                     }
                 }
