@@ -53,10 +53,13 @@ class MoreFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         submitDataBtn.setOnClickListener{
-            writeDataToFile(et_user_weight.text.toString().toFloat(),et_user_height.text.toString().toFloat())
+                Toast.makeText(context, "Your information is saved !", Toast.LENGTH_SHORT).show()
+                writeDataToFile(
+                    et_user_weight.text.toString().toFloat(),
+                    et_user_height.text.toString().toFloat()
+                )
         }
     }
-
 
     private fun writeDataToFile(weight: Float, height: Float)
     {
