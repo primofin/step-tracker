@@ -7,22 +7,20 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getSystemService
-import com.example.steptracker.Objects.InternalFileStorageManager.reportDateFile
-import com.example.steptracker.Objects.InternalFileStorageManager.reportStepFile
-import com.example.steptracker.Objects.InternalFileStorageManager.stepFile
+import com.example.steptracker.Object.InternalFileStorageManager.reportDateFile
+import com.example.steptracker.Object.InternalFileStorageManager.reportStepFile
+import com.example.steptracker.Object.InternalFileStorageManager.stepFile
 import com.example.steptracker.R
 import com.example.steptracker.sensorsHandler.StepDetector
 import com.example.steptracker.sensorsHandler.StepListener
 import kotlinx.android.synthetic.main.fragment_today.*
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.temporal.ChronoUnit
 
 
 class TodayFragment : Fragment(), SensorEventListener, StepListener {
@@ -92,6 +90,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun writeDataToFile() {
+
         val current = LocalDate.now()
         //mode private = rewrite the file. mode_append = add content to the file
         activity!!.openFileOutput(stepFile, Context.MODE_PRIVATE).use {
