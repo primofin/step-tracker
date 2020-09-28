@@ -34,6 +34,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/counterState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono"
+            android:textColor="@color/textPrimary"
+            android:textSize="14sp" />
+        <TextView
             android:id="@+id/circleTv"
             android:layout_width="150dp"
             android:layout_height="152dp"
@@ -54,7 +61,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_mono"
+            android:fontFamily="@font/roboto_mono_bold"
             android:text="@string/step"
             android:textColor="@color/textPrimary"
             android:textSize="18sp" />
@@ -69,12 +76,12 @@
             android:theme="@style/Widget.MyApp.MyButton" />
 
         <Button
-            android:id="@+id/stopBtn"
+            android:id="@+id/pauseBtn"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@android:color/darker_gray"
             android:fontFamily="sans-serif-black"
-            android:text="@string/stop"
+            android:text="@string/pause"
             tools:layout_editor_absoluteX="169dp"
             tools:layout_editor_absoluteY="393dp" />
 

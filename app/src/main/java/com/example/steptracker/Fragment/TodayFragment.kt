@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.steptracker.Object.InternalFileStorageManager.reportDateFile
 import com.example.steptracker.Object.InternalFileStorageManager.reportStepFile
@@ -47,13 +48,17 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
         simpleStepDetector!!.registerListener(this)
 
         startBtn.setOnClickListener(View.OnClickListener {
+            Toast.makeText(context, "Counter is started !", Toast.LENGTH_SHORT).show()
+            counterState.text = ""
             sensorManager!!.registerListener(
                 this,
                 sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_FASTEST
             )
         })
-        stopBtn.setOnClickListener(View.OnClickListener {
+        pauseBtn.setOnClickListener(View.OnClickListener {
+            Toast.makeText(context, "Counter is paused !", Toast.LENGTH_SHORT).show()
+            counterState.text = getString(R.string.isPaused)
             sensorManager!!.unregisterListener(this)
         })
     }
@@ -123,8 +128,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
                     if (reportStepFileList.size < 8) {  //Check if it is already 7 days in record
                         activity!!.openFileOutput(reportStepFile, Context.MODE_PRIVATE).use {
                             //write again from the beginning due to the test
-                            for ( i in 0..reportStepFileList.size - 1)
-                            {
+                            for (i in 0..reportStepFileList.size - 1) {
                                 it.write("${reportStepFileList[i]}\n".toByteArray())
                             }
                         }

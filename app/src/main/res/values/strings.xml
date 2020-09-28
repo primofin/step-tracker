@@ -7,6 +7,8 @@
     <string name="step">Steps</string>
     <string name="start">START</string>
     <string name="stop">STOP</string>
+    <string name="pause">PAUSE</string>
+    <string name="isPaused">PAUSED</string>
     <!--    strings used for report fragment-->
     <string name="report">Report</string>
     <string name="cReport">REPORT</string>
@@ -17,7 +19,8 @@
     <string name="weightValue">50 kg</string>
     <string name="heightLabel">Height (Cm)</string>
     <string name="heightValue">167 cm</string>
-    <string name="bmi">BMI(kg/m2): 17.92</string>
+    <string name="bmi_label">BMI (kg/m2)</string>
+    <string name="bmi">17.92</string>
     <!--    strings used for my profile fragment-->
     <string name="my_profile">My Profile</string>
     <string name="c_my_profile">MY PROFILE</string>
