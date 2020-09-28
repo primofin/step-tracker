@@ -1,13 +1,17 @@
 package com.example.steptracker
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.example.steptracker.Fragment.HealthFragment
+import com.example.steptracker.Fragment.MoreFragment
+import com.example.steptracker.Fragment.ReportFragment
+import com.example.steptracker.Fragment.TodayFragment
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +30,10 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.b1_today -> setCurrentFragment(todayFragment)
                 R.id.b2_report -> setCurrentFragment(reportFragment)
-                R.id.b3_health -> setCurrentFragment(healthFragment)
+                R.id.b3_health -> {
+                    setCurrentFragment(healthFragment)
+
+                }
                 R.id.b4_profile -> setCurrentFragment(moreFragment)
             }
             true

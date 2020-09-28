@@ -1,11 +1,19 @@
-package com.example.steptracker
+package com.example.steptracker.Fragment
 
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.example.steptracker.Objects.InternalFileStorageManager.dataFile
+import com.example.steptracker.R
+import com.example.steptracker.sensorsHandler.StepDetector
+import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_today.*
 
 private val genders = arrayOf("Male", "Female")
 class MoreFragment : Fragment() {
@@ -41,5 +49,23 @@ class MoreFragment : Fragment() {
         }
         return v
     }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        submitDataBtn.setOnClickListener{
+            writeDataToFile(et_user_weight.text.toString().toFloat(),et_user_height.text.toString().toFloat())
+        }
+    }
+
+
+    private fun writeDataToFile(weight: Float, height: Float)
+    {
+
+        //mode private = rewrite the file. mode_append = add content to the file
+        activity!!.openFileOutput(dataFile, Context.MODE_PRIVATE).use {
+            it.write("${weight}\n".toByteArray())
+            it.write("${height}\n".toByteArray())
+        }
+    }
+
 
 }
