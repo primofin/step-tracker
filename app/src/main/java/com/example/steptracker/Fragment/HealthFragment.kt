@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.example.steptracker.Object.InternalFileStorageManager
 import com.example.steptracker.R
 import kotlinx.android.synthetic.main.fragment_health.*
@@ -75,10 +73,10 @@ class HealthFragment : Fragment() {
     {
         var dataFileList = mutableListOf<String>()
         Log.d("health","read file")
-        activity!!.openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
+        requireActivity().openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
             it.write("a line test".toByteArray())
         }
-        activity!!.openFileInput(InternalFileStorageManager.dataFile)?.bufferedReader()?.useLines{ lines -> lines.forEach { dataFileList.add(
+        requireActivity().openFileInput(InternalFileStorageManager.dataFile)?.bufferedReader()?.useLines{ lines -> lines.forEach { dataFileList.add(
             it
         ) }
             if (dataFileList.size >1){

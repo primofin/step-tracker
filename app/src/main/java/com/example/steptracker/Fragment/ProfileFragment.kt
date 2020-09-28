@@ -1,8 +1,6 @@
 package com.example.steptracker.Fragment
 
 import android.content.Context
-import android.hardware.Sensor
-import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,10 +11,7 @@ import android.widget.*
 import com.example.steptracker.Object.InternalFileStorageManager
 import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
-import com.example.steptracker.sensorsHandler.StepDetector
-import kotlinx.android.synthetic.main.fragment_health.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_today.*
 
 private val genders = arrayOf("Male", "Female")
 class MoreFragment : Fragment() {
@@ -66,7 +61,7 @@ class MoreFragment : Fragment() {
     {
         Log.d("write file","write file")
         //mode private = rewrite the file. mode_append = add content to the file
-        activity!!.openFileOutput(dataFile, Context.MODE_PRIVATE).use {
+        requireActivity().openFileOutput(dataFile, Context.MODE_PRIVATE).use {
             it.write("${weight}\n".toByteArray())
             it.write("${height}\n".toByteArray())
         }
@@ -76,10 +71,10 @@ class MoreFragment : Fragment() {
     {
         var dataFileList = mutableListOf<String>()
         Log.d("health","read file")
-        activity!!.openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
+        requireActivity().openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
             it.write("a line test".toByteArray())
         }
-        activity!!.openFileInput(InternalFileStorageManager.dataFile)?.bufferedReader()?.useLines{ lines -> lines.forEach { dataFileList.add(
+        requireActivity().openFileInput(InternalFileStorageManager.dataFile)?.bufferedReader()?.useLines{ lines -> lines.forEach { dataFileList.add(
             it
         ) }
             if (dataFileList.size >1){

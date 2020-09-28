@@ -1,19 +1,21 @@
 package com.example.steptracker.Fragment
 
 import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.example.steptracker.MapActivity
 import com.example.steptracker.Object.InternalFileStorageManager.reportDateFile
 import com.example.steptracker.Object.InternalFileStorageManager.reportStepFile
 import com.example.steptracker.Object.InternalFileStorageManager.stepFile
@@ -67,8 +69,17 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_today, container, false)
+        // button
+        val mapBtn  = view.findViewById<Button>(R.id.mapBtn)
+        // handle button click
+        mapBtn.setOnClickListener {
+            val intent = Intent(activity, MapActivity::class.java)
+            // start activity intent
+            activity?.startActivity(intent)
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_today, container, false)
+        return view
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
@@ -98,7 +109,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
         val current = LocalDate.now()
         //mode private = rewrite the file. mode_append = add content to the file
-        activity!!.openFileOutput(stepFile, Context.MODE_PRIVATE).use {
+        requireActivity().openFileOutput(stepFile, Context.MODE_PRIVATE).use {
             it.write("$numSteps\n".toByteArray())
             it.write("$current\n".toByteArray())    //also write day to compare
         }
@@ -106,11 +117,11 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun readDataFromFile() {
-        activity!!.openFileOutput(stepFile, Context.MODE_APPEND).use {
+        requireActivity().openFileOutput(stepFile, Context.MODE_APPEND).use {
             it.write("a line test".toByteArray())
         }   //avoid error when open file
 
-        activity!!.openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
+        requireActivity().openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }  //Store data in file to a list
             if (stepFileList.size > 1) {    //check if file is null or empty.
                 val current = LocalDate.now()
@@ -119,20 +130,20 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
                 else {
 
                     numSteps = 0    //init a new day record
-                    activity!!.openFileOutput(reportStepFile, Context.MODE_APPEND).use {
+                    requireActivity().openFileOutput(reportStepFile, Context.MODE_APPEND).use {
                         it.write("${stepFileList[0]}\n".toByteArray())
                     }
-                    activity!!.openFileInput(reportStepFile)?.bufferedReader()?.useLines { lines ->
+                    requireActivity().openFileInput(reportStepFile)?.bufferedReader()?.useLines { lines ->
                         lines.forEach { reportStepFileList.add(it) }    //Get a record
                     }
                     if (reportStepFileList.size < 8) {  //Check if it is already 7 days in record
-                        activity!!.openFileOutput(reportStepFile, Context.MODE_PRIVATE).use {
+                        requireActivity().openFileOutput(reportStepFile, Context.MODE_PRIVATE).use {
                             //write again from the beginning due to the test
                             for (i in 0..reportStepFileList.size - 1) {
                                 it.write("${reportStepFileList[i]}\n".toByteArray())
                             }
                         }
-                        activity!!.openFileOutput(reportDateFile, Context.MODE_APPEND).use {
+                        requireActivity().openFileOutput(reportDateFile, Context.MODE_APPEND).use {
                             //current.minusDays(1)
                             it.write("${current.minusDays(1)}\n".toByteArray())    // no need for date file because no test here
                         }
