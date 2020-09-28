@@ -2,13 +2,14 @@ package com.example.steptracker.Fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.steptracker.Objects.InternalFileStorageManager
+import com.example.steptracker.Object.InternalFileStorageManager
 import com.example.steptracker.R
 import kotlinx.android.synthetic.main.fragment_health.*
 
@@ -23,7 +24,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HealthFragment : Fragment() {
-    private var dataFileList = mutableListOf<String>()
+
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -47,8 +48,8 @@ class HealthFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.d("health","chay lai cai read")
         readDataFromFile()
-
     }
 
     companion object {
@@ -72,6 +73,8 @@ class HealthFragment : Fragment() {
     }
     private fun readDataFromFile()
     {
+        var dataFileList = mutableListOf<String>()
+        Log.d("health","read file")
         activity!!.openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
             it.write("a line test".toByteArray())
         }
@@ -81,8 +84,10 @@ class HealthFragment : Fragment() {
             if (dataFileList.size >1){
                 weightValue.text = dataFileList[0]
                 heightValue.text = dataFileList[1]
+                Log.d("health","?? :D ????? ${dataFileList[0]}")
             }
         }
+        Log.d("health","weight ${weightValue.text} height ${heightValue.text}")
         calculateBMI()
     }
     private fun calculateBMI() {

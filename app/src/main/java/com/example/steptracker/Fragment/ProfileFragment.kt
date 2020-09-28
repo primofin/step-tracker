@@ -4,12 +4,13 @@ import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.example.steptracker.Objects.InternalFileStorageManager.dataFile
+import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
 import com.example.steptracker.sensorsHandler.StepDetector
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -59,6 +60,7 @@ class MoreFragment : Fragment() {
 
     private fun writeDataToFile(weight: Float, height: Float)
     {
+        Log.d("write file","write file")
 
         //mode private = rewrite the file. mode_append = add content to the file
         activity!!.openFileOutput(dataFile, Context.MODE_PRIVATE).use {
