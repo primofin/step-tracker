@@ -7,20 +7,39 @@
     <string name="step">Steps</string>
     <string name="start">START</string>
     <string name="stop">STOP</string>
+    <string name="pause">PAUSE</string>
+    <string name="isPaused">PAUSED</string>
     <!--    strings used for report fragment-->
     <string name="report">Report</string>
     <string name="cReport">REPORT</string>
     <!--    strings used for health fragment-->
     <string name="health">Health</string>
     <string name="cHealth">HEALTH</string>
-    <string name="weightLable">Weight</string>
+    <string name="weightLable">Weight (Kg)</string>
     <string name="weightValue">50 kg</string>
-    <string name="heightLabel">Height</string>
+    <string name="heightLabel">Height (Cm)</string>
     <string name="heightValue">167 cm</string>
-    <string name="bmi">BMI(kg/m2): 17.92</string>
+    <string name="bmi_label">BMI (kg/m2)</string>
+    <string name="bmi">17.92</string>
     <!--    strings used for my profile fragment-->
     <string name="my_profile">My Profile</string>
     <string name="c_my_profile">MY PROFILE</string>
     <string name="gender">Gender</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="weight_unit">Kg</string>
+    <string name="height_unit">Cm</string>
+    <string name="restore">Restore</string>
+    <string name="save">Save</string>
+    <string name="title_activity_map">MapActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <!-- Map -->
+    <string name="map">MAP</string>
+    <string name="locationInfo">Location information</string>
+    <string name="getLocation">Get location</string>
+    <!-- -->
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

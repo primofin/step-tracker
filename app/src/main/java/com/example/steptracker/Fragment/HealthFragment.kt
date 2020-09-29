@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.example.steptracker.Object.InternalFileStorageManager
 import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
@@ -103,7 +101,6 @@ class HealthFragment : Fragment() {
         Log.d("health", "weight ${weightValue.text} height ${heightValue.text}")
         calculateBMI()
     }
-
     private fun calculateBMI() {
         if (weightValue.text.isNullOrEmpty() || heightValue.text.isNullOrEmpty()) {
             return

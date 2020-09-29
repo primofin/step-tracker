@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.steptracker.Object.InternalFileStorageManager
 import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.Object.fbObject.account
 import com.example.steptracker.Object.fbObject.dbReference
@@ -30,8 +31,6 @@ import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
-
-
 private val genders = arrayOf("Male", "Female")
 
 class MoreFragment : Fragment() {
@@ -40,12 +39,10 @@ class MoreFragment : Fragment() {
     var database = FirebaseDatabase.getInstance()
     lateinit var userHeight: String
     lateinit var userWeight: String
-
-
+  
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -134,6 +131,18 @@ class MoreFragment : Fragment() {
 
     private fun writeDataToFile(weight: Float, height: Float) {
         Log.d("write file", "write file")
+        readDataFromFile()
+        submitDataBtn.setOnClickListener{
+                Toast.makeText(context, "Your information is saved !", Toast.LENGTH_SHORT).show()
+                writeDataToFile(
+                    et_user_weight.text.toString().toFloat(),
+                    et_user_height.text.toString().toFloat()
+                )
+        }
+    }
+    private fun writeDataToFile(weight: Float, height: Float)
+    {
+        Log.d("write file","write file")
         //mode private = rewrite the file. mode_append = add content to the file
         requireActivity().openFileOutput(dataFile, Context.MODE_PRIVATE).use {
             it.write("${weight}\n".toByteArray())
@@ -259,6 +268,21 @@ class MoreFragment : Fragment() {
             )
         }
     }
-
-
+    // read data from file and set default value to edit text views
+    private fun readDataFromFile()
+    {
+        var dataFileList = mutableListOf<String>()
+        Log.d("health","read file")
+        requireActivity().openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
+            it.write("a line test".toByteArray())
+        }
+        requireActivity().openFileInput(InternalFileStorageManager.dataFile)?.bufferedReader()?.useLines{ lines -> lines.forEach { dataFileList.add(
+            it
+        ) }
+            if (dataFileList.size >1){
+                et_user_weight.setText(dataFileList[0])
+                et_user_height.setText(dataFileList[1])
+            }
+        }
+    }
 }

@@ -42,7 +42,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_mono"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -75,16 +75,30 @@
         app:layout_constraintTop_toBottomOf="@+id/heightLabel" />
 
     <TextView
+        android:id="@+id/bmiLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="287dp"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:text="@string/bmi_label"
+        android:textColor="@color/textPrimary"
+        android:textSize="24sp"
+        android:typeface="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weightValue" />
+
+    <TextView
         android:id="@+id/bmiValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_mono"
         android:text="@string/bmi"
         android:textColor="@color/textPrimary"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weightValue" />
+        app:layout_constraintTop_toBottomOf="@+id/bmiLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

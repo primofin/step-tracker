@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentStart="false"
+    android:layout_alignParentEnd="false"
     android:background="@drawable/gradient_color"
     android:hapticFeedbackEnabled="false"
     tools:context=".Fragment.TodayFragment">
@@ -23,6 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="409dp"
         android:layout_height="0dp"
         android:layout_marginTop="40dp"
@@ -32,6 +35,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/mapBtn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="false"
+                android:layoutDirection="inherit"
+                android:textAlignment="viewStart"
+                app:icon="@drawable/ic_action_locate"
+                app:iconTint="@color/red"
+                tools:layout_editor_absoluteX="347dp"
+                tools:layout_editor_absoluteY="16dp" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/counterState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono"
+            android:textColor="@color/textPrimary"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/circleTv"
@@ -50,10 +82,10 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono_bold"
             android:text="@string/step"
             android:textColor="@color/textPrimary"
             android:textSize="18sp" />
@@ -66,17 +98,17 @@
             android:fontFamily="sans-serif-black"
             android:text="@string/start"
             android:theme="@style/Widget.MyApp.MyButton" />
-
         <Button
-            android:id="@+id/stopBtn"
+            android:id="@+id/pauseBtn"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@android:color/darker_gray"
             android:fontFamily="sans-serif-black"
-            android:text="@string/stop"
+            android:text="@string/pause"
             tools:layout_editor_absoluteX="169dp"
             tools:layout_editor_absoluteY="393dp" />
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
