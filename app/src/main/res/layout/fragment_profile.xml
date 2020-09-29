@@ -94,7 +94,7 @@
                 android:text="@string/weightLable"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-
+          
             <EditText
                 android:id="@+id/et_user_weight"
                 android:layout_width="100dp"
@@ -103,6 +103,7 @@
                 android:layout_centerVertical="true"
                 android:autofillHints=""
                 android:ems="10"
+                android:inputType="none|number|numberDecimal" />
                 android:fontFamily="@font/roboto_mono"
                 android:hint="@string/weight_unit"
                 android:inputType="number"
@@ -145,6 +146,7 @@
                 android:layout_centerVertical="true"
                 android:autofillHints=""
                 android:ems="10"
+                android:inputType="none|number|numberDecimal" />
                 android:fontFamily="@font/roboto_mono"
                 android:hint="@string/height_unit"
                 android:inputType="number"
@@ -163,5 +165,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView4" />
 
+    <Button
+        android:id="@+id/google_log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Google"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView4" />
+
+    <Button
+        android:id="@+id/google_sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Sign Out"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/google_log_in" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:text="Start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitDataBtn" />
+
+    <Button
+        android:id="@+id/buttonStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:text="Stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

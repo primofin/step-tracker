@@ -19,6 +19,11 @@ import com.example.steptracker.MapActivity
 import com.example.steptracker.Object.InternalFileStorageManager.reportDateFile
 import com.example.steptracker.Object.InternalFileStorageManager.reportStepFile
 import com.example.steptracker.Object.InternalFileStorageManager.stepFile
+import com.example.steptracker.Object.fbObject
+import com.example.steptracker.Object.fbObject.account
+import com.example.steptracker.Object.fbObject.dbReference
+import com.example.steptracker.Object.fbObject.isLogged
+import com.example.steptracker.Object.fbObject.todayStep
 import com.example.steptracker.R
 import com.example.steptracker.sensorsHandler.StepDetector
 import com.example.steptracker.sensorsHandler.StepListener
@@ -31,13 +36,14 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
     private var simpleStepDetector: StepDetector? = null
     private var sensorManager: SensorManager? = null
     private var numSteps: Int = 0
-    var stepFileList = mutableListOf<String>()
-    var reportStepFileList = mutableListOf<String>()
+    private var stepFileList = mutableListOf<String>()
+    private var reportStepFileList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -100,6 +106,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
     override fun step(timeNs: Long) {
 
         numSteps++
+        todayStep=numSteps
         circleTv.text = numSteps.toString()
         writeDataToFile()
     }
@@ -113,17 +120,24 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
             it.write("$numSteps\n".toByteArray())
             it.write("$current\n".toByteArray())    //also write day to compare
         }
+        if (isLogged) {
+            dbReference.child(account.id.toString()).child("Today Step").setValue(numSteps)
+            dbReference.child(account.id.toString()).child("Today").setValue(current.toString())
+            dbReference.child(account.id.toString()).child("Daily report").child(current.toString()).setValue(numSteps)
+
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun readDataFromFile() {
+
         requireActivity().openFileOutput(stepFile, Context.MODE_APPEND).use {
             it.write("a line test".toByteArray())
         }   //avoid error when open file
 
         requireActivity().openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }  //Store data in file to a list
-            if (stepFileList.size > 1) {    //check if file is null or empty.
+            if (!stepFileList.isNullOrEmpty()) {    //check if file is null or empty.
                 val current = LocalDate.now()
                 if (current.toString() == stepFileList[1])  //Check if it is still a same day
                     numSteps = Integer.parseInt(stepFileList[0])    //Get today step
@@ -136,7 +150,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
                     requireActivity().openFileInput(reportStepFile)?.bufferedReader()?.useLines { lines ->
                         lines.forEach { reportStepFileList.add(it) }    //Get a record
                     }
-                    if (reportStepFileList.size < 8) {  //Check if it is already 7 days in record
+                    if (reportStepFileList.size < 7) {  //Check if it is already 7 days in record
                         requireActivity().openFileOutput(reportStepFile, Context.MODE_PRIVATE).use {
                             //write again from the beginning due to the test
                             for (i in 0..reportStepFileList.size - 1) {

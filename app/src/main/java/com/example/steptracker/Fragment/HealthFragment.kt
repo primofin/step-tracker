@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.steptracker.Object.InternalFileStorageManager
+import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
+import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.fragment_health.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,7 +48,7 @@ class HealthFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d("health","chay lai cai read")
+        Log.d("health", "chay lai cai read")
         readDataFromFile()
     }
 
@@ -69,32 +71,46 @@ class HealthFragment : Fragment() {
                 }
             }
     }
-    private fun readDataFromFile()
-    {
+
+    private fun readDataFromFile() {
         var dataFileList = mutableListOf<String>()
-        Log.d("health","read file")
-        requireActivity().openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
-            it.write("a line test".toByteArray())
+        Log.d("health", "read file")
+        Log.d("debugstep","health 1")
+        requireActivity().openFileOutput(dataFile, Context.MODE_APPEND).use {
         }
-        requireActivity().openFileInput(InternalFileStorageManager.dataFile)?.bufferedReader()?.useLines{ lines -> lines.forEach { dataFileList.add(
-            it
-        ) }
-            if (dataFileList.size >1){
-                weightValue.text = dataFileList[0]
-                heightValue.text = dataFileList[1]
-                Log.d("health","?? :D ????? ${dataFileList[0]}")
+        requireActivity().openFileInput(dataFile)?.bufferedReader()
+            ?.useLines { lines ->
+                Log.d("debugstep","health ?")
+                lines.forEach {
+                    dataFileList.add(
+                        it
+                    )
+                }
+                Log.d("debugstep","health 2")
+
+                if (!dataFileList.isNullOrEmpty()) {
+                    Log.d("debugstep","health 3")
+
+                    weightValue.text = dataFileList[0]
+                    heightValue.text = dataFileList[1]
+                    Log.d("debugstep","health 4")
+
+                }
             }
-        }
-        Log.d("health","weight ${weightValue.text} height ${heightValue.text}")
+
+        Log.d("health", "weight ${weightValue.text} height ${heightValue.text}")
         calculateBMI()
     }
     private fun calculateBMI() {
-        if(weightValue.text.isNullOrEmpty() || heightValue.text.isNullOrEmpty()){
+        if (weightValue.text.isNullOrEmpty() || heightValue.text.isNullOrEmpty()) {
             return
         }
         var weight = weightValue.text.toString().toFloat()
         var height = heightValue.text.toString().toFloat()
-        bmiValue.text = (weight/(height*height)).toString()
+        bmiValue.text = (weight / (height * height)).toString()
     }
+    private lateinit var userKey: String
+    private lateinit var userReference: DatabaseReference
+
 
 }
