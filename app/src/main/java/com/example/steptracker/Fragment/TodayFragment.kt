@@ -131,9 +131,6 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun readDataFromFile() {
 
-        requireActivity().openFileOutput(stepFile, Context.MODE_APPEND).use {
-            it.write("a line test".toByteArray())
-        }   //avoid error when open file
 
         requireActivity().openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }  //Store data in file to a list
