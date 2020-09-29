@@ -143,7 +143,6 @@ class MoreFragment : Fragment() {
             dbReference.child(account.id.toString()).child("Weight").setValue(weight)
             dbReference.child(account.id.toString()).child("Height").setValue(height)
         }
-
     }
 
     // read data from file and set default value to edit text views
