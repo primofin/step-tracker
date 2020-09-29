@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +15,11 @@ import androidx.annotation.RequiresApi
 import com.example.steptracker.Object.InternalFileStorageManager.reportDateFile
 import com.example.steptracker.Object.InternalFileStorageManager.reportStepFile
 import com.example.steptracker.Object.InternalFileStorageManager.stepFile
+import com.example.steptracker.Object.fbObject
+import com.example.steptracker.Object.fbObject.account
+import com.example.steptracker.Object.fbObject.dbReference
+import com.example.steptracker.Object.fbObject.isLogged
+import com.example.steptracker.Object.fbObject.todayStep
 import com.example.steptracker.R
 import com.example.steptracker.sensorsHandler.StepDetector
 import com.example.steptracker.sensorsHandler.StepListener
@@ -28,13 +32,14 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
     private var simpleStepDetector: StepDetector? = null
     private var sensorManager: SensorManager? = null
     private var numSteps: Int = 0
-    var stepFileList = mutableListOf<String>()
-    var reportStepFileList = mutableListOf<String>()
+    private var stepFileList = mutableListOf<String>()
+    private var reportStepFileList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -84,6 +89,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
     override fun step(timeNs: Long) {
 
         numSteps++
+        todayStep=numSteps
         circleTv.text = numSteps.toString()
         writeDataToFile()
     }
@@ -97,12 +103,16 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
             it.write("$numSteps\n".toByteArray())
             it.write("$current\n".toByteArray())    //also write day to compare
         }
+        if (isLogged) {
+            dbReference.child(account.id.toString()).child("Today Step").setValue(numSteps)
+            dbReference.child(account.id.toString()).child("Today").setValue(current.toString())
+            dbReference.child(account.id.toString()).child("Daily report").child(current.toString()).setValue(numSteps)
+
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun readDataFromFile() {
-
-
         requireActivity().openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }  //Store data in file to a list
             if (!stepFileList.isNullOrEmpty()) {    //check if file is null or empty.

@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.steptracker.Object.InternalFileStorageManager
 import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
+import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.fragment_health.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -111,5 +112,8 @@ class HealthFragment : Fragment() {
         var height = heightValue.text.toString().toFloat()
         bmiValue.text = (weight / (height * height)).toString()
     }
+    private lateinit var userKey: String
+    private lateinit var userReference: DatabaseReference
+
 
 }
