@@ -27,7 +27,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -129,17 +128,7 @@ class MoreFragment : Fragment() {
         }
     }
 
-    private fun writeDataToFile(weight: Float, height: Float) {
-        Log.d("write file", "write file")
-        readDataFromFile()
-        submitDataBtn.setOnClickListener{
-                Toast.makeText(context, "Your information is saved !", Toast.LENGTH_SHORT).show()
-                writeDataToFile(
-                    et_user_weight.text.toString().toFloat(),
-                    et_user_height.text.toString().toFloat()
-                )
-        }
-    }
+
     private fun writeDataToFile(weight: Float, height: Float)
     {
         Log.d("write file","write file")
@@ -268,21 +257,5 @@ class MoreFragment : Fragment() {
             )
         }
     }
-    // read data from file and set default value to edit text views
-    private fun readDataFromFile()
-    {
-        var dataFileList = mutableListOf<String>()
-        Log.d("health","read file")
-        requireActivity().openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
-            it.write("a line test".toByteArray())
-        }
-        requireActivity().openFileInput(InternalFileStorageManager.dataFile)?.bufferedReader()?.useLines{ lines -> lines.forEach { dataFileList.add(
-            it
-        ) }
-            if (dataFileList.size >1){
-                et_user_weight.setText(dataFileList[0])
-                et_user_height.setText(dataFileList[1])
-            }
-        }
-    }
+
 }
