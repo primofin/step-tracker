@@ -80,7 +80,7 @@
                 android:layout_alignParentEnd="true"
                 android:ems="10"
                 android:hint="kg"
-                android:inputType="none" />
+                android:inputType="none|number|numberDecimal" />
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -114,7 +114,7 @@
                 android:layout_alignParentEnd="true"
                 android:ems="10"
                 android:hint="cm"
-                android:inputType="none" />
+                android:inputType="none|number|numberDecimal" />
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -128,6 +128,26 @@
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView4" />
+
+    <Button
+        android:id="@+id/google_log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Google"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView4" />
+
+    <Button
+        android:id="@+id/google_sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Sign Out"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/google_log_in" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

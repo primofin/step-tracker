@@ -1,22 +1,43 @@
 package com.example.steptracker
 
-import android.os.Build
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.example.steptracker.Fragment.HealthFragment
 import com.example.steptracker.Fragment.MoreFragment
 import com.example.steptracker.Fragment.ReportFragment
 import com.example.steptracker.Fragment.TodayFragment
+import com.example.steptracker.Object.InternalFileStorageManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+    //var database = FirebaseDatabase.getInstance()
+    //var myRef = database.getReference("message")
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
+        }
+        openFileOutput(InternalFileStorageManager.reportStepFile, Context.MODE_APPEND).use {
+
+        }
+        openFileOutput(InternalFileStorageManager.reportDateFile, Context.MODE_APPEND).use {
+
+        }
+        openFileOutput(InternalFileStorageManager.stepFile, Context.MODE_APPEND).use {
+        }   //avoid error when open file
+
         val todayFragment = TodayFragment()
         val reportFragment = ReportFragment()
         val healthFragment = HealthFragment()
@@ -45,5 +66,10 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.main_fragment, fragment)
             commit()
         }
+    private fun writeSthToFirebase()
+    {
+        //myRef.setValue("Hello, World!")
+
+    }
 }
 

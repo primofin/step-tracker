@@ -1,2 +1,2 @@
-include ':app'
+include ':app',':signin:app'
 rootProject.name = "Step Tracker"

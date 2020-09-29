@@ -93,7 +93,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
         val current = LocalDate.now()
         //mode private = rewrite the file. mode_append = add content to the file
-        activity!!.openFileOutput(stepFile, Context.MODE_PRIVATE).use {
+        requireActivity().openFileOutput(stepFile, Context.MODE_PRIVATE).use {
             it.write("$numSteps\n".toByteArray())
             it.write("$current\n".toByteArray())    //also write day to compare
         }
@@ -101,34 +101,32 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun readDataFromFile() {
-        activity!!.openFileOutput(stepFile, Context.MODE_APPEND).use {
-            it.write("a line test".toByteArray())
-        }   //avoid error when open file
 
-        activity!!.openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
+
+        requireActivity().openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }  //Store data in file to a list
-            if (stepFileList.size > 1) {    //check if file is null or empty.
+            if (!stepFileList.isNullOrEmpty()) {    //check if file is null or empty.
                 val current = LocalDate.now()
                 if (current.toString() == stepFileList[1])  //Check if it is still a same day
                     numSteps = Integer.parseInt(stepFileList[0])    //Get today step
                 else {
 
                     numSteps = 0    //init a new day record
-                    activity!!.openFileOutput(reportStepFile, Context.MODE_APPEND).use {
+                    requireActivity().openFileOutput(reportStepFile, Context.MODE_APPEND).use {
                         it.write("${stepFileList[0]}\n".toByteArray())
                     }
-                    activity!!.openFileInput(reportStepFile)?.bufferedReader()?.useLines { lines ->
+                    requireActivity().openFileInput(reportStepFile)?.bufferedReader()?.useLines { lines ->
                         lines.forEach { reportStepFileList.add(it) }    //Get a record
                     }
-                    if (reportStepFileList.size < 8) {  //Check if it is already 7 days in record
-                        activity!!.openFileOutput(reportStepFile, Context.MODE_PRIVATE).use {
+                    if (reportStepFileList.size < 7) {  //Check if it is already 7 days in record
+                        requireActivity().openFileOutput(reportStepFile, Context.MODE_PRIVATE).use {
                             //write again from the beginning due to the test
                             for ( i in 0..reportStepFileList.size - 1)
                             {
                                 it.write("${reportStepFileList[i]}\n".toByteArray())
                             }
                         }
-                        activity!!.openFileOutput(reportDateFile, Context.MODE_APPEND).use {
+                        requireActivity().openFileOutput(reportDateFile, Context.MODE_APPEND).use {
                             //current.minusDays(1)
                             it.write("${current.minusDays(1)}\n".toByteArray())    // no need for date file because no test here
                         }
