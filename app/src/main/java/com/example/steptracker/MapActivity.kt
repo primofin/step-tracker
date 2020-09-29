@@ -120,8 +120,8 @@ class MapActivity : AppCompatActivity() {
         }
     }
 
+    //check if we have permission
     private fun checkPermission(): Boolean {
-        //check if we have permission
         if (
             ActivityCompat.checkSelfPermission(
                 this,
@@ -138,8 +138,8 @@ class MapActivity : AppCompatActivity() {
 
     }
 
+    //this function will allows us to tell the user to request the necessary permission if they are not granted
     private fun requestPermission() {
-        //this function will allows us to tell the user to request the necessary permission if they are not granted
         ActivityCompat.requestPermissions(
             this,
             arrayOf(
@@ -150,8 +150,8 @@ class MapActivity : AppCompatActivity() {
         )
     }
 
+    //this function will return to us the state of the location service
     private fun isLocationEnabled(): Boolean {
-        //this function will return to us the state of the location service
         //if the gps or the network provider is enabled then it will return true otherwise or the network provider is enabled then it will return true otherwise it will return false
         var locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
@@ -176,11 +176,10 @@ class MapActivity : AppCompatActivity() {
         var countryName = ""
         var postalCode = ""
         var geoCoder = Geocoder(this, Locale.getDefault())
-        var Address = geoCoder.getFromLocation(lat, long, 3)
-
-        cityName = Address[0].locality
-        postalCode = Address[0].postalCode
-        countryName = Address[0].countryName
+        var address = geoCoder.getFromLocation(lat, long, 3)
+        cityName = address[0].locality
+        postalCode = address[0].postalCode
+        countryName = address[0].countryName
         Log.d("Debug:", "Your City: $cityName ; your Country $countryName")
         return "postal code: $postalCode,city name:$cityName"
     }
