@@ -13,17 +13,17 @@ import com.example.steptracker.Fragment.ReportFragment
 import com.example.steptracker.Fragment.TodayFragment
 import com.example.steptracker.Object.InternalFileStorageManager
 import com.example.steptracker.Object.fbObject
+import com.example.steptracker.Object.fbObject.isRunning
 import com.example.steptracker.Object.fbObject.reportStepFileList
 import com.example.steptracker.Object.fbObject.stepFileList
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_today.*
 import java.time.LocalDate
 
 
 
 class MainActivity : AppCompatActivity() {
-    //var database = FirebaseDatabase.getInstance()
-    //var myRef = database.getReference("message")
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,14 +66,23 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-    public override fun  onStart(){
+    @RequiresApi(Build.VERSION_CODES.O)
+    public override fun onStart() {
         super.onStart()
-
+        if (isRunning)
+            readDataFromFile()
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    public override fun onResume() {
+        super.onResume()
+        if (isRunning)
+            startBtn.performClick()
+        readDataFromFile()
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.main_fragment, fragment, fragment.toString())
+            replace(R.id.main_fragment, fragment)
             commit()
         }
     @RequiresApi(Build.VERSION_CODES.O)
@@ -85,7 +94,6 @@ class MainActivity : AppCompatActivity() {
                 val current = LocalDate.now()
                 if (current.toString() == stepFileList[1]) {
                     //Check if it is still a same day
-
                     fbObject.todayStep = Integer.parseInt(stepFileList[0])    //Get today step
                     println("today step trong file ${fbObject.todayStep}")
                     println("du lieu trong file ${stepFileList[0]} ")
@@ -116,13 +124,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
     }
-    private fun writeSthToFirebase()
-    {
-        //myRef.setValue("Hello, World!")
 
-    }
 }
 
 
