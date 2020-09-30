@@ -46,7 +46,6 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //readDataFromFile()
         isOnScreen = true
 
         circleTv.text = todayStep.toString()

@@ -12,7 +12,7 @@ object fbObject {
     lateinit var account: GoogleSignInAccount
     var isLogged: Boolean = false
     lateinit var userInfo : String
-    var todayStep by Delegates.notNull<Int>()
+    var todayStep = 0
     var stepFileList = mutableListOf<String>()
     var reportStepFileList = mutableListOf<String>()
 
