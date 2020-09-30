@@ -13,7 +13,7 @@ object fbObject {
     var isLogged: Boolean = false
     lateinit var userInfo : String
     var todayStep by Delegates.notNull<Int>()
-
-
+    var stepFileList = mutableListOf<String>()
+    var reportStepFileList = mutableListOf<String>()
 
 }

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import com.example.steptracker.Object.InternalFileStorageManager
+import com.example.steptracker.ForegroundService
 import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.Object.fbObject.account
 import com.example.steptracker.Object.fbObject.dbReference
@@ -76,7 +76,7 @@ class MoreFragment : Fragment() {
         // set default value to edit text views
 
         readDataFromFile()
-        buttonStart.setOnClickListener{
+        firebaseData.setOnClickListener{
             //ForegroundService.startService(this.requireContext(), "Foreground Service is running...")
             val menuListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -91,9 +91,12 @@ class MoreFragment : Fragment() {
             (account.id?.let { it1 -> dbReference.child(it1) })?.addValueEventListener(menuListener)
 
         }
-        buttonStop.setOnClickListener{
-            //ForegroundService.stop
-        }
+        buttonStart.setOnClickListener(View.OnClickListener {
+
+        })
+        buttonStop.setOnClickListener(View.OnClickListener {
+        })
+
         submitDataBtn.setOnClickListener {
             if (!et_user_weight.text.isNullOrEmpty() && !et_user_height.text.isNullOrEmpty()) {
                 Toast.makeText(context, "Your information is saved !", Toast.LENGTH_SHORT).show()
