@@ -18,9 +18,11 @@ import androidx.fragment.app.Fragment
 import com.example.steptracker.ForegroundService
 import com.example.steptracker.MapActivity
 import com.example.steptracker.Object.InternalFileStorageManager.stepFile
+import com.example.steptracker.Object.fbObject
 import com.example.steptracker.Object.fbObject.account
 import com.example.steptracker.Object.fbObject.dbReference
 import com.example.steptracker.Object.fbObject.isLogged
+import com.example.steptracker.Object.fbObject.isRunning
 import com.example.steptracker.Object.fbObject.todayStep
 import com.example.steptracker.R
 import com.example.steptracker.sensorsHandler.StepDetector
@@ -64,12 +66,14 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
                 sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_FASTEST
             )
+            isRunning = true
             ForegroundService.startService(requireActivity(), "Foreground Service is running...")
         })
         pauseBtn.setOnClickListener(View.OnClickListener {
             Toast.makeText(context, "Counter is paused !", Toast.LENGTH_SHORT).show()
             counterState.text = getString(R.string.isPaused)
             sensorManager!!.unregisterListener(this)
+            isRunning= false
             ForegroundService.stopService(requireActivity())
         })
     }
@@ -79,7 +83,10 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
         super.onPause()
         isOnScreen = false
     }
-
+    override fun  onStart(){
+        super.onStart()
+        isOnScreen = true
+    }
     override fun onResume() {
         super.onResume()
         isOnScreen = true
@@ -120,6 +127,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
         todayStep++
         println(todayStep)
+        fbObject.stepFileList[0] = todayStep.toString()
         if (isOnScreen)
             circleTv.text = todayStep.toString()
         //writeDataToFile()

@@ -11,8 +11,9 @@ object fbObject {
     var dbReference = database.getReference("users")
     lateinit var account: GoogleSignInAccount
     var isLogged: Boolean = false
+    var isRunning: Boolean = false
     lateinit var userInfo : String
-    var todayStep = 0
+    var todayStep by Delegates.notNull<Int>()
     var stepFileList = mutableListOf<String>()
     var reportStepFileList = mutableListOf<String>()
 
