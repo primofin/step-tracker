@@ -16,6 +16,7 @@ import com.example.steptracker.Object.fbObject
 import com.example.steptracker.Object.fbObject.isRunning
 import com.example.steptracker.Object.fbObject.reportStepFileList
 import com.example.steptracker.Object.fbObject.stepFileList
+import com.example.steptracker.Object.fbObject.todayStep
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_today.*
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        todayStep= 0
         openFileOutput(InternalFileStorageManager.dataFile, Context.MODE_APPEND).use {
         }
         openFileOutput(InternalFileStorageManager.reportStepFile, Context.MODE_APPEND).use {

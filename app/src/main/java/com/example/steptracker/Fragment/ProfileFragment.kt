@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import com.example.steptracker.ForegroundService
 import com.example.steptracker.Object.InternalFileStorageManager.dataFile
 import com.example.steptracker.Object.fbObject.account
 import com.example.steptracker.Object.fbObject.dbReference
@@ -73,30 +72,12 @@ class MoreFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        if(isLogged)
+            googleBtn.text = "Sign Out"
+
         // set default value to edit text views
-
         readDataFromFile()
-        firebaseData.setOnClickListener{
-            //ForegroundService.startService(this.requireContext(), "Foreground Service is running...")
-            val menuListener = object : ValueEventListener {
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // handle error
-                }
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val takenFireBaseData = dataSnapshot.value
-                    userInfo = Gson().toJson(takenFireBaseData)
-                    println(userInfo)
-                }
-            }
-            (account.id?.let { it1 -> dbReference.child(it1) })?.addValueEventListener(menuListener)
-
-        }
-        buttonStart.setOnClickListener(View.OnClickListener {
-
-        })
-        buttonStop.setOnClickListener(View.OnClickListener {
-        })
-
         submitDataBtn.setOnClickListener {
             if (!et_user_weight.text.isNullOrEmpty() && !et_user_height.text.isNullOrEmpty()) {
                 Toast.makeText(context, "Your information is saved !", Toast.LENGTH_SHORT).show()
@@ -122,12 +103,15 @@ class MoreFragment : Fragment() {
                 requireActivity()
             ) { task -> handleSignInResult(task) }
 
-        google_log_in.setOnClickListener {
-            signIn()
-        }
-        google_sign_out.setOnClickListener{
-            signOut()
-            //Log.d("checkSignIn",account.id.toString())
+        googleBtn.setOnClickListener {
+            if(isLogged) {
+                googleBtn.text = "Sign Out"
+                signIn()
+            }
+            else {
+                googleBtn.text = "Restore"
+                signOut()
+            }
         }
     }
 
@@ -238,17 +222,20 @@ class MoreFragment : Fragment() {
             Log.i("Google ID Token", googleIdToken)
             dbReference.child(googleId).child("Token").setValue(googleIdToken)
 
-            //myRef.setValue(account)
+            //fetch data from Firebase
+            val menuListener = object : ValueEventListener {
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // handle error
+                }
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val takenFireBaseData = dataSnapshot.value
+                    userInfo = Gson().toJson(takenFireBaseData)
+                    println(userInfo)
+                }
+            }
+            (account.id?.let { it1 -> dbReference.child(it1) })?.addValueEventListener(menuListener)
 
 
-            /*val myIntent = Intent(this, DetailsActivity::class.java)
-            myIntent.putExtra("google_id", googleId)
-            myIntent.putExtra("google_first_name", googleFirstName)
-            myIntent.putExtra("google_last_name", googleLastName)
-            myIntent.putExtra("google_email", googleEmail)
-            myIntent.putExtra("google_profile_pic_url", googleProfilePicURL)
-            myIntent.putExtra("google_id_token", googleIdToken)
-            this.startActivity(myIntent)*/
         } catch (e: ApiException) {
             isLogged = false
 

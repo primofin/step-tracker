@@ -59,7 +59,8 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
         simpleStepDetector!!.registerListener(this)
 
         startBtn.setOnClickListener(View.OnClickListener {
-            Toast.makeText(context, "Counter is started !", Toast.LENGTH_SHORT).show()
+            if (!isRunning)
+                Toast.makeText(context, "Counter is started !", Toast.LENGTH_SHORT).show()
             counterState.text = ""
             sensorManager!!.registerListener(
                 this,
