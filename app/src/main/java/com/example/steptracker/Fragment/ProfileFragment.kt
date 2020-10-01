@@ -104,11 +104,13 @@ class MoreFragment : Fragment() {
             ) { task -> handleSignInResult(task) }
 
         googleBtn.setOnClickListener {
-            if(isLogged) {
+            if(!isLogged) {
                 googleBtn.text = "Sign Out"
+                isLogged = true
                 signIn()
             }
             else {
+                isLogged = false
                 googleBtn.text = "Restore"
                 signOut()
             }
