@@ -1,4 +1,4 @@
-package com.example.steptracker.Object
+package com.example.steptracker.objects
 
 object InternalFileStorageManager {
     internal const val dataFile = "dataFile.txt"    //Store data -> BMI

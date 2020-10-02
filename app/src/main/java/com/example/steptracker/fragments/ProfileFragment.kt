@@ -1,20 +1,23 @@
-package com.example.steptracker.Fragment
+package com.example.steptracker.fragments
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.example.steptracker.Object.InternalFileStorageManager.dataFile
-import com.example.steptracker.Object.fbObject.account
-import com.example.steptracker.Object.fbObject.dbReference
-import com.example.steptracker.Object.fbObject.isLogged
-import com.example.steptracker.Object.fbObject.userInfo
+import com.example.steptracker.objects.InternalFileStorageManager.dataFile
+import com.example.steptracker.objects.DataObject.account
+import com.example.steptracker.objects.DataObject.dbReference
+import com.example.steptracker.objects.DataObject.isLogged
+import com.example.steptracker.objects.DataObject.userInfo
 import com.example.steptracker.R
+import com.example.steptracker.objects.DataObject.todayStep
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -23,24 +26,17 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_profile.*
-
+import java.time.LocalDate
 
 private val genders = arrayOf("Male", "Female")
 
 class MoreFragment : Fragment() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 9001
-    var database = FirebaseDatabase.getInstance()
-    lateinit var userHeight: String
-    lateinit var userWeight: String
-  
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,8 +68,8 @@ class MoreFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        if(isLogged)
+        //Set google button text
+        if (isLogged)
             googleBtn.text = "Sign Out"
 
         // set default value to edit text views
@@ -83,7 +79,8 @@ class MoreFragment : Fragment() {
                 Toast.makeText(context, "Your information is saved !", Toast.LENGTH_SHORT).show()
                 writeDataToFile(
                     et_user_weight.text.toString().toFloat(),
-                    et_user_height.text.toString().toFloat()
+                    et_user_height.text.toString().toFloat(),
+                    sp_gender.selectedItem.toString()
                 )
             } else {
                 Toast.makeText(context, "You should enter required information", Toast.LENGTH_SHORT)
@@ -104,57 +101,48 @@ class MoreFragment : Fragment() {
             ) { task -> handleSignInResult(task) }
 
         googleBtn.setOnClickListener {
-            if(isLogged) {
+            if (!isLogged) {
                 googleBtn.text = "Sign Out"
+                isLogged = true
                 signIn()
-            }
-            else {
+            } else {
+                isLogged = false
                 googleBtn.text = "Restore"
                 signOut()
             }
         }
     }
 
-
-    private fun writeDataToFile(weight: Float, height: Float)
-    {
-        Log.d("write file","write file")
+    private fun writeDataToFile(weight: Float, height: Float, gender: String) {
         //mode private = rewrite the file. mode_append = add content to the file
         requireActivity().openFileOutput(dataFile, Context.MODE_PRIVATE).use {
             it.write("${weight}\n".toByteArray())
             it.write("${height}\n".toByteArray())
-        }
-        Log.d("check Login", "account.toString()")
+            it.write("${gender}\n".toByteArray())
 
+        }
+        //Check if the use logged in, then push data to firebase
         if (isLogged) {
             dbReference.child(account.id.toString()).child("Weight").setValue(weight)
             dbReference.child(account.id.toString()).child("Height").setValue(height)
+            dbReference.child(account.id.toString()).child("Gender").setValue(gender)
+
         }
     }
 
     // read data from file and set default value to edit text views
     private fun readDataFromFile() {
         var dataFileList = mutableListOf<String>()
-        Log.d("health", "read file")
-        Log.d("debugstep", "profile 1")
         requireActivity().openFileInput(dataFile)?.bufferedReader()
             ?.useLines { lines ->
-                Log.d("debugstep", "profile ?")
-
                 lines.forEach {
                     dataFileList.add(
                         it
                     )
                 }
-                Log.d("debugstep", "profile 2")
-
                 if (!dataFileList.isNullOrEmpty()) {
-                    Log.d("debugstep", "profile 3")
-
                     et_user_weight.setText(dataFileList[0])
                     et_user_height.setText(dataFileList[1])
-                    Log.d("debugstep", "profile 4")
-
                 }
             }
     }
@@ -174,6 +162,7 @@ class MoreFragment : Fragment() {
             }
     }
 
+    //In case want to delete account
     private fun revokeAccess() {
         mGoogleSignInClient.revokeAccess()
             .addOnCompleteListener(requireActivity()) {
@@ -181,6 +170,7 @@ class MoreFragment : Fragment() {
             }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
@@ -190,22 +180,22 @@ class MoreFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount?>) {
         try {
             account = completedTask.getResult(
                 ApiException::class.java
             )!!
+
             // Signed in successfully
             isLogged = true
-
-            println(dbReference)
             val googleId = account?.id ?: ""
             Log.i("Google ID", googleId)
-
 
             val googleFirstName = account?.givenName ?: ""
             Log.i("Google First Name", googleFirstName)
             dbReference.child(googleId).child("First name").setValue(googleFirstName)
+
             val googleLastName = account?.familyName ?: ""
             Log.i("Google Last Name", googleLastName)
             dbReference.child(googleId).child("Last name").setValue(googleLastName)
@@ -220,31 +210,32 @@ class MoreFragment : Fragment() {
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
-            dbReference.child(googleId).child("Token").setValue(googleIdToken)
+            dbReference.child(googleId).child("Today").setValue(LocalDate.now().toString())
+            dbReference.child(googleId).child("Today Step").setValue(todayStep)
+            dbReference.child(googleId).child("Daily Report").child(LocalDate.now().toString())
+                .setValue(todayStep)
 
             //fetch data from Firebase
             val menuListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {
                     // handle error
                 }
+
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val takenFireBaseData = dataSnapshot.value
                     userInfo = Gson().toJson(takenFireBaseData)
-                    println(userInfo)
                 }
             }
             (account.id?.let { it1 -> dbReference.child(it1) })?.addValueEventListener(menuListener)
 
-
         } catch (e: ApiException) {
             isLogged = false
-
             // Sign in was unsuccessful
             Log.e(
-
                 "failed code=", e.statusCode.toString()
             )
         }
     }
 
 }
+

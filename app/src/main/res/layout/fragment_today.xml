@@ -8,7 +8,7 @@
     android:layout_alignParentEnd="false"
     android:background="@drawable/gradient_color"
     android:hapticFeedbackEnabled="false"
-    tools:context=".Fragment.TodayFragment">
+    tools:context=".fragments.TodayFragment">
 
     <TextView
         android:id="@+id/tvHeader1"
