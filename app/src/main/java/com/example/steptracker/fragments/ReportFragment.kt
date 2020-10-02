@@ -1,4 +1,4 @@
-package com.example.steptracker.fragment
+package com.example.steptracker.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

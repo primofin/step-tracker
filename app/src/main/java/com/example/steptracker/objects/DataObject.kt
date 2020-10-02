@@ -1,4 +1,4 @@
-package com.example.steptracker.`object`
+package com.example.steptracker.objects
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.database.*

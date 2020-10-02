@@ -1,4 +1,4 @@
-package com.example.steptracker.fragment
+package com.example.steptracker.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.steptracker.`object`.InternalFileStorageManager.dataFile
+import com.example.steptracker.objects.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
 import kotlinx.android.synthetic.main.fragment_health.*
 

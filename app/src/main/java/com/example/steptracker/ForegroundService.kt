@@ -12,11 +12,11 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.annotation.RequiresApi
-import com.example.steptracker.`object`.InternalFileStorageManager.stepFile
-import com.example.steptracker.`object`.DataObject
-import com.example.steptracker.`object`.DataObject.dbReference
-import com.example.steptracker.`object`.DataObject.isLogged
-import com.example.steptracker.`object`.DataObject.todayStep
+import com.example.steptracker.objects.InternalFileStorageManager.stepFile
+import com.example.steptracker.objects.DataObject
+import com.example.steptracker.objects.DataObject.dbReference
+import com.example.steptracker.objects.DataObject.isLogged
+import com.example.steptracker.objects.DataObject.todayStep
 import com.example.steptracker.sensorsHandler.StepDetector
 import com.example.steptracker.sensorsHandler.StepListener
 import java.time.LocalDate

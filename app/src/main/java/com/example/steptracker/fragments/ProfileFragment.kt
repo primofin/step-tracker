@@ -1,4 +1,4 @@
-package com.example.steptracker.fragment
+package com.example.steptracker.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -11,13 +11,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.example.steptracker.`object`.InternalFileStorageManager.dataFile
-import com.example.steptracker.`object`.DataObject.account
-import com.example.steptracker.`object`.DataObject.dbReference
-import com.example.steptracker.`object`.DataObject.isLogged
-import com.example.steptracker.`object`.DataObject.userInfo
+import com.example.steptracker.objects.InternalFileStorageManager.dataFile
+import com.example.steptracker.objects.DataObject.account
+import com.example.steptracker.objects.DataObject.dbReference
+import com.example.steptracker.objects.DataObject.isLogged
+import com.example.steptracker.objects.DataObject.userInfo
 import com.example.steptracker.R
-import com.example.steptracker.`object`.DataObject.todayStep
+import com.example.steptracker.objects.DataObject.todayStep
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

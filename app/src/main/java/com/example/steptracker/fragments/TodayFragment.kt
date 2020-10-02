@@ -1,4 +1,4 @@
-package com.example.steptracker.fragment
+package com.example.steptracker.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -17,10 +17,10 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.steptracker.ForegroundService
 import com.example.steptracker.MapActivity
-import com.example.steptracker.`object`.DataObject.isRunning
-import com.example.steptracker.`object`.DataObject.todayStep
+import com.example.steptracker.objects.DataObject.isRunning
+import com.example.steptracker.objects.DataObject.todayStep
 import com.example.steptracker.R
-import com.example.steptracker.`object`.DataObject.stepFileList
+import com.example.steptracker.objects.DataObject.stepFileList
 import com.example.steptracker.sensorsHandler.StepDetector
 import com.example.steptracker.sensorsHandler.StepListener
 import kotlinx.android.synthetic.main.fragment_today.*
