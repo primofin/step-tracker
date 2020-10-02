@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    public override fun onStart(){
+    public override fun onStart() {
         super.onStart()
         readDataFromFile()
     }
@@ -122,7 +122,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
+        if (stepFileList.isNullOrEmpty()) {
+            stepFileList.add(todayStep.toString())
+            stepFileList.add(LocalDate.now().toString())
+        }
     }
 
 }
