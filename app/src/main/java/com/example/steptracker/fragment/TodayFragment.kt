@@ -1,4 +1,4 @@
-package com.example.steptracker.Fragment
+package com.example.steptracker.fragment
 
 import android.content.Context
 import android.content.Intent
@@ -17,42 +17,27 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.steptracker.ForegroundService
 import com.example.steptracker.MapActivity
-import com.example.steptracker.Object.InternalFileStorageManager.stepFile
-import com.example.steptracker.Object.fbObject
-import com.example.steptracker.Object.fbObject.account
-import com.example.steptracker.Object.fbObject.dbReference
-import com.example.steptracker.Object.fbObject.isLogged
-import com.example.steptracker.Object.fbObject.isRunning
-import com.example.steptracker.Object.fbObject.todayStep
+import com.example.steptracker.`object`.DataObject.isRunning
+import com.example.steptracker.`object`.DataObject.todayStep
 import com.example.steptracker.R
+import com.example.steptracker.`object`.DataObject.stepFileList
 import com.example.steptracker.sensorsHandler.StepDetector
 import com.example.steptracker.sensorsHandler.StepListener
 import kotlinx.android.synthetic.main.fragment_today.*
-import java.time.LocalDate
-import kotlin.Unit.toString
 
 
 class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
     private var simpleStepDetector: StepDetector? = null
     private var sensorManager: SensorManager? = null
-    var isOnScreen : Boolean = true
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+    var isOnScreen: Boolean = true
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         isOnScreen = true
-
         circleTv.text = todayStep.toString()
-        println("mo lai cai activity nay")
-        println(todayStep)
 
         sensorManager = activity?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         simpleStepDetector = StepDetector()
@@ -74,31 +59,34 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
             Toast.makeText(context, "Counter is paused !", Toast.LENGTH_SHORT).show()
             counterState.text = getString(R.string.isPaused)
             sensorManager!!.unregisterListener(this)
-            isRunning= false
+            isRunning = false
             ForegroundService.stopService(requireActivity())
         })
     }
 
-    override fun onPause()
-    {
+    //Check if fragment is visible
+    override fun onPause() {
         super.onPause()
         isOnScreen = false
     }
-    override fun  onStart(){
+
+    override fun onStart() {
         super.onStart()
         isOnScreen = true
     }
+
     override fun onResume() {
         super.onResume()
         isOnScreen = true
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_today, container, false)
         // button
-        val mapBtn  = view.findViewById<Button>(R.id.mapBtn)
+        val mapBtn = view.findViewById<Button>(R.id.mapBtn)
         // handle button click
         mapBtn.setOnClickListener {
             val intent = Intent(activity, MapActivity::class.java)
@@ -125,32 +113,10 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun step(timeNs: Long) {
-
-        todayStep++
-        println(todayStep)
-        fbObject.stepFileList[0] = todayStep.toString()
+        //Only set text when fragment visible, else crash app
         if (isOnScreen)
-            circleTv.text = todayStep.toString()
-        //writeDataToFile()
+            circleTv.text = stepFileList[0]
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun writeDataToFile() {
-
-        val current = LocalDate.now()
-        //mode private = rewrite the file. mode_append = add content to the file
-        requireActivity().openFileOutput(stepFile, Context.MODE_PRIVATE).use {
-            it.write("$todayStep\n".toByteArray())
-            it.write("$current\n".toByteArray())    //also write day to compare
-        }
-        if (isLogged) {
-            dbReference.child(account.id.toString()).child("Today Step").setValue(todayStep)
-            dbReference.child(account.id.toString()).child("Today").setValue(current.toString())
-            dbReference.child(account.id.toString()).child("Daily report").child(current.toString()).setValue(
-                todayStep
-            )
-
-        }
-    }
 
 }
