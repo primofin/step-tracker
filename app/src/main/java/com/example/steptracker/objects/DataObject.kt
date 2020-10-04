@@ -15,5 +15,6 @@ object DataObject {
     var todayStep by Delegates.notNull<Int>()
     var stepFileList = mutableListOf<String>()
     var reportStepFileList = mutableListOf<String>()
+    var reportDateFileList = mutableListOf<String>()
 
 }

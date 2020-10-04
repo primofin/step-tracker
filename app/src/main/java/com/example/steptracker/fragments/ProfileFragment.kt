@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 private val genders = arrayOf("Male", "Female")
 
@@ -66,6 +67,7 @@ class MoreFragment : Fragment() {
         return v
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //Set google button text

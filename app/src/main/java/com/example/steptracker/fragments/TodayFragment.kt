@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
 
     private var simpleStepDetector: StepDetector? = null
     private var sensorManager: SensorManager? = null
-    var isOnScreen: Boolean = true
+    private var isOnScreen: Boolean = true
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
