@@ -50,7 +50,6 @@ class HealthFragment : Fragment() {
             return
         val weight = weightValue.text.toString().toFloat()
         val height = heightValue.text.toString().toFloat()
-        bmiValue.text = (weight / (height * height)).toString()
+        bmiValue.text = (weight / (height * height /10000)).toString()
     }
-
 }

@@ -23,7 +23,6 @@ import com.example.steptracker.objects.InternalFileStorageManager.stepFile
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_today.*
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 class MainActivity : AppCompatActivity() {

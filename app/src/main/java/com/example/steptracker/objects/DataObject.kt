@@ -5,7 +5,6 @@ import com.google.firebase.database.*
 import kotlin.properties.Delegates
 
 object DataObject {
-
     var database = FirebaseDatabase.getInstance()
     var dbReference = database.getReference("users")
     lateinit var account: GoogleSignInAccount
@@ -16,5 +15,4 @@ object DataObject {
     var stepFileList = mutableListOf<String>()
     var reportStepFileList = mutableListOf<String>()
     var reportDateFileList = mutableListOf<String>()
-
 }
