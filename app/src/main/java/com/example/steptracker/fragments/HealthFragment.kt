@@ -38,18 +38,42 @@ class HealthFragment : Fragment() {
                     )
                 }
                 if (!dataFileList.isNullOrEmpty()) {
+                    remind_txt.text = resources.getString(R.string.instruction);
                     weightValue.text = dataFileList[0]
                     heightValue.text = dataFileList[1]
+                } else {
+                    remind_txt.text = resources.getString(R.string.remind);
                 }
             }
         calculateBMI()
     }
 
     private fun calculateBMI() {
-        if (weightValue.text.isNullOrEmpty() || heightValue.text.isNullOrEmpty())
+        if (weightValue.text.isNullOrEmpty() || heightValue.text.isNullOrEmpty()) {
             return
+        }
         val weight = weightValue.text.toString().toFloat()
         val height = heightValue.text.toString().toFloat()
-        bmiValue.text = (weight / (height * height /10000)).toString()
+        val bmi = (weight / (height * height / 10000))
+        val bmiStr = ("%.2f".format(bmi))
+        bmiValue.text = bmiStr
+    }
+
+    /**
+     * @param: bmi - bmi value
+     * This func return bmi interpretation based on the bmi value
+     */
+    private fun bmiRes(bmi: Float): String {
+        var result = ""
+        if (bmi < 18.5) {
+            result = "Underweight"
+        } else if (bmi > 18.5 && bmi < 24.9) {
+            result = "Normal"
+        } else if (bmi > 25 && bmi < 29.9) {
+            result = "Overweight"
+        } else {
+            result = "Obese"
+        }
+        return result
     }
 }

@@ -91,7 +91,7 @@
                 android:layout_centerHorizontal="false"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/roboto_mono"
-                android:text="@string/weightLable"
+                android:text="@string/weightLabel"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
           

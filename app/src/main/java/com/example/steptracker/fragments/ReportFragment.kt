@@ -2,6 +2,7 @@ package com.example.steptracker.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,15 +25,15 @@ class ReportFragment : Fragment() {
             reportStepFileList[it].toDouble()
         )
     }
-        var series = LineGraphSeries(
-        arrayOf(
-            DataPoint(0.toDouble(), 1.toDouble()),
-            DataPoint(1.toDouble(), 5.toDouble()),
-            DataPoint(2.toDouble(), 3.toDouble()),
-            DataPoint(3.toDouble(), 2.toDouble()),
-            DataPoint(4.toDouble(), 6.toDouble())
-        )
-    )
+//        var series = LineGraphSeries(
+//        arrayOf(
+//            DataPoint(0.toDouble(), 1.toDouble()),
+//            DataPoint(1.toDouble(), 5.toDouble()),
+//            DataPoint(2.toDouble(), 3.toDouble()),
+//            DataPoint(3.toDouble(), 2.toDouble()),
+//            DataPoint(4.toDouble(), 6.toDouble())
+//        )
+//    )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
