@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment
 import com.example.steptracker.BmiActivity
 import com.example.steptracker.objects.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
+import com.example.steptracker.objects.DataObject.isLogged
+import com.example.steptracker.objects.DataObject.userHeight
+import com.example.steptracker.objects.DataObject.userWeight
 import kotlinx.android.synthetic.main.fragment_health.*
 
 
@@ -35,11 +38,13 @@ class HealthFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        readDataFromFile()
+
+            readDataFromFile()
     }
 
     private fun readDataFromFile() {
-        val dataFileList = mutableListOf<String>()
+        if(!isLogged) {
+            val dataFileList = mutableListOf<String>()
         requireActivity().openFileOutput(dataFile, Context.MODE_APPEND).use {
         }
         requireActivity().openFileInput(dataFile)?.bufferedReader()
@@ -57,10 +62,26 @@ class HealthFragment : Fragment() {
                     remind_txt.text = resources.getString(R.string.remind);
                 }
             }
+            requireActivity().openFileInput(dataFile)?.bufferedReader()
+                ?.useLines { lines ->
+                    lines.forEach {
+                        dataFileList.add(
+                            it
+                        )
+                    }
+                    if (!dataFileList.isNullOrEmpty()) {
+                        userWeight = dataFileList[0]
+                        userHeight = dataFileList[1]
+                    }
+                }
+        }
+        weightValue.text = userWeight
+        heightValue.text = userHeight
         calculateBMI()
     }
 
     private fun calculateBMI() {
+
         if (weightValue.text.isNullOrEmpty() || heightValue.text.isNullOrEmpty()) {
             return
         }

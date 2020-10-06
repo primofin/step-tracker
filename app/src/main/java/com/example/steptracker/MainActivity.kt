@@ -10,6 +10,7 @@ import com.example.steptracker.fragments.HealthFragment
 import com.example.steptracker.fragments.MoreFragment
 import com.example.steptracker.fragments.ReportFragment
 import com.example.steptracker.fragments.TodayFragment
+import com.example.steptracker.objects.DataObject.isLogged
 import com.example.steptracker.objects.InternalFileStorageManager
 import com.example.steptracker.objects.DataObject.isRunning
 import com.example.steptracker.objects.DataObject.reportDateFileList
