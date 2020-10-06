@@ -21,6 +21,7 @@ import com.example.steptracker.objects.DataObject.dateMap
 import com.example.steptracker.objects.DataObject.todayStep
 import com.example.steptracker.objects.DataObject.userHeight
 import com.example.steptracker.objects.DataObject.userWeight
+import com.example.steptracker.objects.InternalFileStorageManager
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.util.JSONPObject
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -261,6 +262,11 @@ class MoreFragment : Fragment() {
                         if (takenDate == LocalDate.now().toString())
                             todayStep =
                                 Integer.parseInt(dataSnapshot.child("Today Step").value.toString())
+                        //mode private = rewrite the file. mode_append = add content to the file
+                        activity!!.openFileOutput(InternalFileStorageManager.stepFile, Context.MODE_PRIVATE).use {
+                            it.write("$todayStep\n".toByteArray())
+                            it.write("${LocalDate.now()}\n".toByteArray())    //also write day to compare
+                        }
                     } catch (e: Exception) {
                     }
                     //Set weight
@@ -276,7 +282,7 @@ class MoreFragment : Fragment() {
 
 
                     //todayStep = dataSnapshot.child("Today Step")
-                    dateMap.forEach { (k, v) -> println(" hi $k $v") }
+                    //dateMap.forEach { (k, v) -> println(" hi $k $v") }
                     //val testChild = dataSnapshot.child("Daily Report").value
                     //val parsed = JSONObject(userInfo).get()
                     //Log.d("test key formatted",takenDailyReportFormatted )
@@ -287,7 +293,7 @@ class MoreFragment : Fragment() {
 
                     //val takenMap = Gson().fromJson(dailyReportTaken,DailyReport::class.java)
                     //val getDayTest = dailyReportTaken.getString("2020-10-03")
-                    Log.d("test fb chung", userInfo)
+                    //Log.d("test fb chung", userInfo)
 
                     //Log.d("test fb getchild", testChild.toString() + "abc")
 

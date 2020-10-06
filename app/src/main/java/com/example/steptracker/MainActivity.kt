@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() {
         openFileOutput(reportStepFile, Context.MODE_APPEND).use {}
         openFileOutput(reportDateFile, Context.MODE_APPEND).use {}
         openFileOutput(stepFile, Context.MODE_APPEND).use {}
-        if (!isLogged)
-            readDataFromFile()
+        readDataFromFile()
         val todayFragment = TodayFragment()
         val reportFragment = ReportFragment()
         val healthFragment = HealthFragment()
@@ -68,8 +67,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if (isRunning)
             startBtn.performClick()
-        if (!isLogged)
-            readDataFromFile()
+        readDataFromFile()
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
