@@ -1,0 +1,838 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 90,
+      "max": [
+        0.18964000046253204,
+        0.18036000430583954,
+        0.019109999760985374
+      ],
+      "min": [
+        -0.18964000046253204,
+        -0.18036000430583954,
+        -1.9420599937438965
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 1080,
+      "componentType": 5126,
+      "count": 90,
+      "max": [
+        0.99243754148483276,
+        0.94387149810791016,
+        1
+      ],
+      "min": [
+        -0.99243754148483276,
+        -0.94387149810791016,
+        -1
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 90,
+      "max": [
+        0.99999511241912842,
+        0.9893152117729187,
+        0,
+        1
+      ],
+      "min": [
+        -0.99835300445556641,
+        -0.98638737201690674,
+        -0.99241149425506592,
+        1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 90,
+      "max": [
+        0.9961400032043457,
+        0.96876001358032227
+      ],
+      "min": [
+        0.48100998997688293,
+        0.7604299783706665
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 420,
+      "max": [
+        89
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 2160,
+      "componentType": 5126,
+      "count": 730,
+      "max": [
+        1.1968026161193848,
+        0.76539754867553711,
+        1.9691872596740723
+      ],
+      "min": [
+        -1.1354877948760986,
+        -0.45136922597885132,
+        0.19252040982246399
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 10920,
+      "componentType": 5126,
+      "count": 730,
+      "max": [
+        0.94257509708404541,
+        0.99962466955184937,
+        0.99896758794784546
+      ],
+      "min": [
+        -0.92428141832351685,
+        -0.99921607971191406,
+        -0.99767076969146729
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 1440,
+      "componentType": 5126,
+      "count": 730,
+      "max": [
+        0.99996405839920044,
+        0.97899073362350464,
+        0.9801177978515625,
+        1
+      ],
+      "min": [
+        -0.99989783763885498,
+        -0.9827580451965332,
+        -0.99154865741729736,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 720,
+      "componentType": 5126,
+      "count": 730,
+      "max": [
+        0.92905998229980469,
+        0.66913998126983643
+      ],
+      "min": [
+        0.73054999113082886,
+        0.33812999725341797
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 1680,
+      "componentType": 5125,
+      "count": 3768,
+      "max": [
+        729
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 19680,
+      "componentType": 5126,
+      "count": 1098,
+      "max": [
+        1.2612500190734863,
+        0.59529972076416016,
+        4.4459676742553711
+      ],
+      "min": [
+        -1.2612500190734863,
+        -0.99580830335617065,
+        -0.0045616831630468369
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 32856,
+      "componentType": 5126,
+      "count": 1098,
+      "max": [
+        0.99996310472488403,
+        0.99999839067459106,
+        1.0000127553939819
+      ],
+      "min": [
+        -0.99997597932815552,
+        -1.0000102519989014,
+        -0.99955368041992188
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 13120,
+      "componentType": 5126,
+      "count": 1098,
+      "max": [
+        0.99982798099517822,
+        0.99972313642501831,
+        0.99999737739562988,
+        1
+      ],
+      "min": [
+        -0.99888664484024048,
+        -1,
+        -0.99993723630905151,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 6560,
+      "componentType": 5126,
+      "count": 1098,
+      "max": [
+        0.74773001670837402,
+        0.96648001670837402
+      ],
+      "min": [
+        0.03351999819278717,
+        0.03351999819278717
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 16752,
+      "componentType": 5125,
+      "count": 5664,
+      "max": [
+        1097
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 9,
+      "max": [
+        1,
+        0.99571001529693604,
+        0.024390000849962234,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0.99950999021530151,
+        1,
+        0,
+        0.44010999798774719,
+        0.045949999243021011,
+        0.056650001555681229,
+        1
+      ],
+      "min": [
+        -0.22378000617027283,
+        0,
+        -0.0075699998997151852,
+        0,
+        -0.22277000546455383,
+        -0.36513000726699829,
+        -1,
+        0,
+        -0.98909002542495728,
+        -0.22378000617027283,
+        -0.36513000726699829,
+        0,
+        0,
+        -0.35293000936508179,
+        -0.11811000108718872,
+        1
+      ],
+      "type": "MAT4"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Juan Mendoza (https://sketchfab.com/juanmendoza)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/models/49dce8978d60468eac7508f1cc3b45cc",
+      "title": "Hollow Knight - VR Chat - Free Download"
+    },
+    "generator": "Sketchfab-3.18.5",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 39408,
+      "byteOffset": 0,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 15344,
+      "byteOffset": 39408,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 46032,
+      "byteOffset": 54752,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 30688,
+      "byteOffset": 100784,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 576,
+      "byteOffset": 131472,
+      "byteStride": 64,
+      "name": "floatBufferViews"
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 132048,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Knight_1_baseColor.png"
+    },
+    {
+      "uri": "textures/Knight_baseColor.png"
+    },
+    {
+      "uri": "textures/Knight_0_baseColor.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Knight",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 1,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.59999999999999998
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Knight_0",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 2,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.59999999999999998
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Knight_1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.59999999999999998
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Weapon_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "HollowKnight_Cape_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8
+          },
+          "indices": 9,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "HollowKnight_Body_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 11,
+            "POSITION": 10,
+            "TANGENT": 12,
+            "TEXCOORD_0": 13
+          },
+          "indices": 14,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.70710678118654746,
+        -0,
+        -0,
+        0.70710678118654757
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "Root"
+    },
+    {
+      "children": [
+        4,
+        15,
+        17
+      ],
+      "name": "HollowKnight__Armature"
+    },
+    {
+      "children": [
+        5
+      ],
+      "name": "HollowKnight__Armature_rootJoint"
+    },
+    {
+      "children": [
+        6
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        -0.36513000000000001,
+        0.93096000000000001,
+        0,
+        0,
+        -0.93096000000000001,
+        -0.36513000000000001,
+        0,
+        0,
+        -0.0026600000000000009,
+        0.16193000000000005,
+        1
+      ],
+      "name": "mixamorig_Hips_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        7
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0.94839000000000007,
+        -0.31711000000000006,
+        0,
+        0,
+        0.31711000000000006,
+        0.94839000000000007,
+        0,
+        0,
+        0.069160000000000027,
+        0,
+        1
+      ],
+      "name": "mixamorig_Spine_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        8
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0.99660000000000004,
+        -0.082410000000000011,
+        0,
+        0,
+        0.082410000000000011,
+        0.99660000000000004,
+        0,
+        0,
+        0.086680000000000021,
+        0,
+        1
+      ],
+      "name": "mixamorig_Spine1_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        9
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0.97814999999999996,
+        -0.20792000000000002,
+        0,
+        0,
+        0.20792000000000002,
+        0.97814999999999996,
+        0,
+        0,
+        0.058050000000000011,
+        0,
+        1
+      ],
+      "name": "mixamorig_Spine2_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        10
+      ],
+      "matrix": [
+        -0.13814000000000001,
+        -0.99031999999999998,
+        -0.013860000000000003,
+        0,
+        0.99010999999999993,
+        -0.13774000000000003,
+        -0.026550000000000008,
+        0,
+        0.024390000000000005,
+        -0.017390000000000006,
+        0.99954999999999994,
+        0,
+        0.013020000000000002,
+        0.054100000000000016,
+        -0.013310000000000002,
+        1
+      ],
+      "name": "mixamorig_LeftShoulder_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        11
+      ],
+      "matrix": [
+        0.97817999999999994,
+        -0.20770000000000002,
+        0.0037300000000000011,
+        0,
+        0.20772000000000002,
+        0.97774000000000005,
+        -0.029700000000000004,
+        0,
+        0.0025200000000000005,
+        0.029820000000000003,
+        0.99954999999999994,
+        0,
+        0,
+        0.069350000000000009,
+        0,
+        1
+      ],
+      "name": "mixamorig_LeftArm_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        12
+      ],
+      "matrix": [
+        0.97463,
+        -0.058210000000000012,
+        -0.21614000000000003,
+        0,
+        0.053270000000000012,
+        0.99817,
+        -0.028630000000000003,
+        0,
+        0.21741000000000005,
+        0.016390000000000005,
+        0.97594000000000003,
+        0,
+        0,
+        0.10178000000000001,
+        0,
+        1
+      ],
+      "name": "mixamorig_LeftForeArm_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        13
+      ],
+      "matrix": [
+        0.99697000000000002,
+        -0.077820000000000014,
+        -0.0016800000000000003,
+        0,
+        0.077800000000000008,
+        0.99694000000000005,
+        -0.008150000000000001,
+        0,
+        0.0023100000000000004,
+        0.0079900000000000023,
+        0.99997000000000003,
+        0,
+        0,
+        0.10106000000000001,
+        0,
+        1
+      ],
+      "name": "mixamorig_LeftHand_HollowKnight__Armature"
+    },
+    {
+      "children": [
+        14
+      ],
+      "matrix": [
+        -0.25688000000000005,
+        0.0048800000000000015,
+        -0,
+        0,
+        0,
+        -0,
+        -0.25692999999999999,
+        0,
+        -0.0048800000000000015,
+        -0.25688000000000005,
+        0,
+        0,
+        0.0044700000000000009,
+        0.022580000000000006,
+        -0.0021200000000000004,
+        1
+      ],
+      "name": "Weapon"
+    },
+    {
+      "mesh": 0,
+      "name": "Weapon_0"
+    },
+    {
+      "children": [
+        16
+      ],
+      "matrix": [
+        0.25692999999999999,
+        0,
+        0,
+        0,
+        0,
+        0.25692999999999999,
+        0,
+        0,
+        0,
+        0,
+        0.25692999999999999,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "HollowKnight_Cape"
+    },
+    {
+      "mesh": 1,
+      "name": "HollowKnight_Cape_0"
+    },
+    {
+      "children": [
+        18
+      ],
+      "matrix": [
+        0.25692999999999999,
+        0,
+        0,
+        0,
+        0,
+        0.25692999999999999,
+        0,
+        0,
+        0,
+        0,
+        0.25692999999999999,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "HollowKnight_Body"
+    },
+    {
+      "mesh": 2,
+      "name": "HollowKnight_Body_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "skins": [
+    {
+      "inverseBindMatrices": 15,
+      "joints": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "skeleton": 4
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}
+

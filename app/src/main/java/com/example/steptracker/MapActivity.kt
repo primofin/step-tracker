@@ -172,9 +172,9 @@ class MapActivity : AppCompatActivity() {
     }
 
     private fun getCityName(lat: Double, long: Double): String {
-        var cityName: String = ""
-        var countryName = ""
-        var postalCode = ""
+        var cityName: String
+        var countryName: String
+        var postalCode: String
         var geoCoder = Geocoder(this, Locale.getDefault())
         var address = geoCoder.getFromLocation(lat, long, 3)
         cityName = address[0].locality

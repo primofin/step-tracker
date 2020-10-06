@@ -15,12 +15,20 @@
     <!--    strings used for health fragment-->
     <string name="health">Health</string>
     <string name="cHealth">HEALTH</string>
-    <string name="weightLable">Weight (Kg)</string>
+    <string name="remind">Please set your height and weight in profile page !</string>
+    <string name="instruction">Click to the image below to see more</string>
+    <string name="weightLabel">Weight (Kg)</string>
+    <string name="img_des">BMI result interpretation</string>
     <string name="weightValue">50 kg</string>
     <string name="heightLabel">Height (Cm)</string>
     <string name="heightValue">167 cm</string>
     <string name="bmi_label">BMI (kg/m2)</string>
     <string name="bmi">17.92</string>
+    <string name="title_activity_bmi">BmiActivity</string>
+    <string name="bmi_result">BMI INTERPRETATION</string>
+    <string name="overweight">Overweight</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
     <!--    strings used for my profile fragment-->
     <string name="my_profile">My Profile</string>
     <string name="c_my_profile">MY PROFILE</string>
