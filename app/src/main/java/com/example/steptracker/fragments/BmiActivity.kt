@@ -17,7 +17,7 @@ import com.google.ar.sceneform.HitTestResult
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_bmi.*
 
 class BmiActivity : AppCompatActivity() {
     private lateinit var fragment: ArFragment
@@ -42,14 +42,14 @@ class BmiActivity : AppCompatActivity() {
         // set back button
         actionbar.setDisplayHomeAsUpEnabled(true)
 
-//        fragment = sceneform_fragment as ArFragment
-//        fragment.arSceneView.scene.addOnUpdateListener { frameTime ->
-//            fragment.onUpdate(frameTime)
-//            onUpdate()
-//        }
+        fragment = sceneform_fragment as ArFragment
+        fragment.arSceneView.scene.addOnUpdateListener { frameTime ->
+            fragment.onUpdate(frameTime)
+            onUpdate()
+        }
 
-//        floatingActionButton.setOnClickListener { addObject(Uri.parse("scene.sfb")) }
-//        showFab(false)
+        floatingActionButton.setOnClickListener { addObject(Uri.parse("CupCakeFinal2.sfb")) }
+        showFab(false)
 
     }
     override fun onSupportNavigateUp(): Boolean {
@@ -57,101 +57,98 @@ class BmiActivity : AppCompatActivity() {
         return true
     }
 
+    private fun showFab(enabled: Boolean) {
+        if (enabled) {
+            floatingActionButton.isEnabled = true
+            floatingActionButton.visibility = View.VISIBLE
+        } else {
+            floatingActionButton.isEnabled = false
+            floatingActionButton.visibility = View.GONE
+        }
+    }
 
-//    private fun showFab(enabled: Boolean) {
-//        if (enabled) {
-//            floatingActionButton.isEnabled = true
-//            floatingActionButton.visibility = View.VISIBLE
-//        } else {
-//            floatingActionButton.isEnabled = false
-//            floatingActionButton.visibility = View.GONE
-//        }
-//    }
-//
-//    private fun onUpdate() {
-//        updateTracking()
-//        if (isTracking) {
-//            val hitTestChanged = updateHitTest()
-//            if (hitTestChanged) {
-//                showFab(isHitting)
-//            }
-//        }
-//
-//    }
+    private fun onUpdate() {
+        updateTracking()
+        if (isTracking) {
+            val hitTestChanged = updateHitTest()
+            if (hitTestChanged) {
+                showFab(isHitting)
+            }
+        }
 
-//    private fun updateHitTest(): Boolean {
-//        val frame = fragment.arSceneView.arFrame
-//        val point = getScreenCenter()
-//        val hits: List<HitResult>
-//        val wasHitting = isHitting
-//        isHitting = false
-//        if (frame != null) {
-//            hits = frame.hitTest(point.x.toFloat(), point.y.toFloat())
-//            for (hit in hits) {
-//                val trackable = hit.trackable
-//                if (trackable is Plane && trackable.isPoseInPolygon(hit.hitPose)) {
-//                    isHitting = true
-//                    break
-//                }
-//            }
-//        }
-//        return wasHitting != isHitting
-//    }
-//
-//    private fun updateTracking(): Boolean {
-//        val frame = fragment.arSceneView.arFrame
-//        val wasTracking = isTracking
-//        if (frame != null) {
-//            isTracking = frame.camera.trackingState == TrackingState.TRACKING
-//        }
-//        return isTracking != wasTracking
-//    }
-//
-//    private fun getScreenCenter(): Point {
-//        val vw = findViewById<View>(android.R.id.content)
-//        return Point(vw.width / 2, vw.height / 2)
-//    }
-//
-//
-//    private fun addObject(model: Uri) {
-//        val frame = fragment.arSceneView.arFrame
-//        val pt = getScreenCenter()
-//        if (frame != null) {
-//            val hits = frame.hitTest(pt.x.toFloat(), pt.y.toFloat())
-//            for (hit in hits) {
-//                val trackable = hit.trackable
-//                if (trackable is Plane && trackable.isPoseInPolygon(hit.hitPose)) {
-//                    placeObject(fragment, hit.createAnchor(), model)
-//                    break
-//                }
-//            }
-//        }
-//    }
-//
-//    private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
-//        ModelRenderable.builder()
-//            .setSource(fragment.context, model)
-//            .build()
-//            .thenAccept {
-//                addNodeToScene(fragment, anchor, it)
-//
-//            }
-//            .exceptionally {
-//                Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT).show()
-//                return@exceptionally null
-//            }
-//    }
-//
-//
-//    private fun addNodeToScene(fragment: ArFragment, anchor: Anchor, renderable: ModelRenderable) {
-//        val anchorNode = AnchorNode(anchor)
-//        val viewNode = TransformableNode(fragment.transformationSystem)
-//        viewNode.renderable = renderable
-//        viewNode.setParent(anchorNode)
-//        fragment.arSceneView.scene.addChild(anchorNode)
-//        viewNode.select()
-//        viewNode.setOnTapListener{ hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
-//            showFab(false)
-//        }
-//    }
+    }
+
+    private fun updateHitTest(): Boolean {
+        val frame = fragment.arSceneView.arFrame
+        val point = getScreenCenter()
+        val hits: List<HitResult>
+        val wasHitting = isHitting
+        isHitting = false
+        if (frame != null) {
+            hits = frame.hitTest(point.x.toFloat(), point.y.toFloat())
+            for (hit in hits) {
+                val trackable = hit.trackable
+                if (trackable is Plane && trackable.isPoseInPolygon(hit.hitPose)) {
+                    isHitting = true
+                    break
+                }
+            }
+        }
+        return wasHitting != isHitting
+    }
+
+    private fun updateTracking(): Boolean {
+        val frame = fragment.arSceneView.arFrame
+        val wasTracking = isTracking
+        if (frame != null) {
+            isTracking = frame.camera.trackingState == TrackingState.TRACKING
+        }
+        return isTracking != wasTracking
+    }
+
+    private fun getScreenCenter(): Point {
+        val vw = findViewById<View>(android.R.id.content)
+        return Point(vw.width / 2, vw.height / 2)
+    }
+
+
+    private fun addObject(model: Uri) {
+        val frame = fragment.arSceneView.arFrame
+        val pt = getScreenCenter()
+        if (frame != null) {
+            val hits = frame.hitTest(pt.x.toFloat(), pt.y.toFloat())
+            for (hit in hits) {
+                val trackable = hit.trackable
+                if (trackable is Plane && trackable.isPoseInPolygon(hit.hitPose)) {
+                    placeObject(fragment, hit.createAnchor(), model)
+                    break
+                }
+            }
+        }
+    }
+
+    private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
+        ModelRenderable.builder()
+            .setSource(fragment.context, model)
+            .build()
+            .thenAccept {
+                addNodeToScene(fragment, anchor, it)
+            }
+            .exceptionally {
+                return@exceptionally null
+            }
+    }
+
+
+    private fun addNodeToScene(fragment: ArFragment, anchor: Anchor, renderable: ModelRenderable) {
+        val anchorNode = AnchorNode(anchor)
+        val viewNode = TransformableNode(fragment.transformationSystem)
+        viewNode.renderable = renderable
+        viewNode.setParent(anchorNode)
+        fragment.arSceneView.scene.addChild(anchorNode)
+        viewNode.select()
+        viewNode.setOnTapListener{ hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
+            showFab(false)
+        }
+    }
 }

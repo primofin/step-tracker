@@ -68,3 +68,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+sceneform.asset('sampledata/CupCake/CupCakeFinal2.obj', // 'Source Asset Path' specified during import.
+        'default',                            // 'Material Path' specified during import.
+        'sampledata/CupCake/CupCakeFinal2.sfa',         // '.sfa Output Path' specified during import.
+        'src/main/assets/CupCakeFinal2')
