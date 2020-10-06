@@ -10,6 +10,7 @@ import com.example.steptracker.fragments.HealthFragment
 import com.example.steptracker.fragments.MoreFragment
 import com.example.steptracker.fragments.ReportFragment
 import com.example.steptracker.fragments.TodayFragment
+import com.example.steptracker.objects.DataObject.isLogged
 import com.example.steptracker.objects.InternalFileStorageManager
 import com.example.steptracker.objects.DataObject.isRunning
 import com.example.steptracker.objects.DataObject.reportDateFileList
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         openFileOutput(reportStepFile, Context.MODE_APPEND).use {}
         openFileOutput(reportDateFile, Context.MODE_APPEND).use {}
         openFileOutput(stepFile, Context.MODE_APPEND).use {}
-        readDataFromFile()
+        if (!isLogged)
+            readDataFromFile()
         val todayFragment = TodayFragment()
         val reportFragment = ReportFragment()
         val healthFragment = HealthFragment()
@@ -66,7 +68,8 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if (isRunning)
             startBtn.performClick()
-        readDataFromFile()
+        if (!isLogged)
+            readDataFromFile()
     }
 
     private fun setCurrentFragment(fragment: Fragment) =

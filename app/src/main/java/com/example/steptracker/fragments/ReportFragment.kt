@@ -1,5 +1,6 @@
 package com.example.steptracker.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,7 +31,7 @@ class ReportFragment : Fragment() {
             DataPoint(1.toDouble(), 5.toDouble()),
             DataPoint(2.toDouble(), 3.toDouble()),
             DataPoint(3.toDouble(), 2.toDouble()),
-            DataPoint(4.toDouble(), 6.toDouble())
+            DataPoint(4.toDouble(), 16.toDouble())
         )
     )
     override fun onCreateView(
@@ -41,12 +42,13 @@ class ReportFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_report, container, false)
         val graphView = v.findViewById<GraphView>(R.id.stepGraph)
         // set date label formatter
-        val graphFormatter = SimpleDateFormat("dd/MM")
-        graphView.gridLabelRenderer.labelFormatter =
-            DateAsXAxisLabelFormatter(context, graphFormatter)
+        //val graphFormatter = SimpleDateFormat("dd/MM")
+        //graphView.gridLabelRenderer.labelFormatter =
+        //    DateAsXAxisLabelFormatter(context, graphFormatter)
+        //graphView.value
         graphView.gridLabelRenderer.setHumanRounding(false)
-        graphView.addSeries(LineGraphSeries(dataPoints))
-//        graphView.addSeries(series)
+        //graphView.addSeries(LineGraphSeries(dataPoints))
+        graphView.addSeries(series)
         graphView.gridLabelRenderer.padding = 60;
         return v
     }

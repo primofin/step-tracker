@@ -117,7 +117,7 @@ class ForegroundService : Service(), StepListener, SensorEventListener {
                 .setValue(todayStep)
             dbReference.child(DataObject.account.id.toString()).child("Today")
                 .setValue(current.toString())
-            dbReference.child(DataObject.account.id.toString()).child("Daily report")
+            dbReference.child(DataObject.account.id.toString()).child("Daily Report")
                 .child(current.toString()).setValue(todayStep)
 
         }
