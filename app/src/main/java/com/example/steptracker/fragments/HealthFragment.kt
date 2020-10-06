@@ -1,24 +1,36 @@
 package com.example.steptracker.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.example.steptracker.BmiActivity
 import com.example.steptracker.objects.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
 import kotlinx.android.synthetic.main.fragment_health.*
 
 
 class HealthFragment : Fragment() {
-
+    var bmiInterpret = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_health, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health, container, false)
+        val imgResult = view.findViewById(R.id.imgResult) as ImageView
+        imgResult.setOnClickListener {
+            val intent = Intent(activity, BmiActivity::class.java)
+            intent.putExtra("bmiTxt", bmiInterpret)
+            // start activity intent
+            activity?.startActivity(intent)
+        }
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -57,6 +69,7 @@ class HealthFragment : Fragment() {
         val bmi = (weight / (height * height / 10000))
         val bmiStr = ("%.2f".format(bmi))
         bmiValue.text = bmiStr
+        bmiRes(bmi)
     }
 
     /**
@@ -64,16 +77,15 @@ class HealthFragment : Fragment() {
      * This func return bmi interpretation based on the bmi value
      */
     private fun bmiRes(bmi: Float): String {
-        var result = ""
         if (bmi < 18.5) {
-            result = "Underweight"
+            bmiInterpret = "Underweight"
         } else if (bmi > 18.5 && bmi < 24.9) {
-            result = "Normal"
+            bmiInterpret = "Normal"
         } else if (bmi > 25 && bmi < 29.9) {
-            result = "Overweight"
+            bmiInterpret = "Overweight"
         } else {
-            result = "Obese"
+            bmiInterpret = "Obese"
         }
-        return result
+        return bmiInterpret
     }
 }

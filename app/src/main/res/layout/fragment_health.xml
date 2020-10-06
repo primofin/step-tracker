@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/heightLabel" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgResult"
         android:layout_width="370dp"
         android:layout_height="178dp"
         android:layout_marginStart="20dp"
@@ -124,7 +124,7 @@
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imgResult" />
 
     <TextView
         android:id="@+id/bmiValue"

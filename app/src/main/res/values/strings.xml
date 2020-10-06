@@ -24,6 +24,8 @@
     <string name="heightValue">167 cm</string>
     <string name="bmi_label">BMI (kg/m2)</string>
     <string name="bmi">17.92</string>
+    <string name="title_activity_bmi">BmiActivity</string>
+    <string name="bmi_result">BMI INTERPRETATION</string>
     <!--    strings used for my profile fragment-->
     <string name="my_profile">My Profile</string>
     <string name="c_my_profile">MY PROFILE</string>
