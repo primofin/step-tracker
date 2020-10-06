@@ -26,6 +26,9 @@
     <string name="bmi">17.92</string>
     <string name="title_activity_bmi">BmiActivity</string>
     <string name="bmi_result">BMI INTERPRETATION</string>
+    <string name="overweight">Overweight</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
     <!--    strings used for my profile fragment-->
     <string name="my_profile">My Profile</string>
     <string name="c_my_profile">MY PROFILE</string>

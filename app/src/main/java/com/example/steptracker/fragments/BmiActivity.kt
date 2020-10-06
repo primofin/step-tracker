@@ -3,10 +3,8 @@ package com.example.steptracker
 import android.graphics.Point
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
@@ -15,6 +13,7 @@ import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.HitTestResult
 import com.google.ar.sceneform.rendering.ModelRenderable
+import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_bmi.*
@@ -23,7 +22,7 @@ class BmiActivity : AppCompatActivity() {
     private lateinit var fragment: ArFragment
     private var isTracking: Boolean = false
     private var isHitting: Boolean = false
-    private var itentData: String = ""
+    private var intentData: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +31,7 @@ class BmiActivity : AppCompatActivity() {
         val intent = intent
         val bmiInterpret = intent.getStringExtra("bmiTxt")
         if (bmiInterpret != null) {
-            itentData = bmiInterpret
+            intentData = bmiInterpret
         }
         setSupportActionBar(findViewById(R.id.toolbarBmi))
         //actionbar
@@ -47,11 +46,36 @@ class BmiActivity : AppCompatActivity() {
             fragment.onUpdate(frameTime)
             onUpdate()
         }
+        bmi_txt.text = intentData
+        if( intentData =="Obese"){
+            floatingActionButton.setOnClickListener {
+                    addObject(Uri.parse("model.sfb"))
+            }
+        }else if(intentData =="Underweight"){
+            floatingActionButton.setOnClickListener {
+                addObject(Uri.parse("under.sfb"))
+            }
+        }else if(intentData =="Normal"){
+            floatingActionButton.setOnClickListener {
+                addObject(Uri.parse("CupCakeFinal2.sfb"))
+            }
+        }else if( intentData =="Overweight"){
+            floatingActionButton.setOnClickListener {
+                addObject(Uri.parse("model.sfb"))
+            }
+        }
 
-        floatingActionButton.setOnClickListener { addObject(Uri.parse("CupCakeFinal2.sfb")) }
+//        floatingActionButton.setOnClickListener {
+//            if(itentData ==="Normal"){
+//                addObject(Uri.parse("model.sfb"))
+//            }
+//            else if(itentData ==="Underweight"){
+//                addObject(Uri.parse("under.sfb"))
+//            }
+//        }
         showFab(false)
-
     }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
@@ -75,11 +99,11 @@ class BmiActivity : AppCompatActivity() {
                 showFab(isHitting)
             }
         }
-
     }
 
     private fun updateHitTest(): Boolean {
         val frame = fragment.arSceneView.arFrame
+        //find the root view of the activity
         val point = getScreenCenter()
         val hits: List<HitResult>
         val wasHitting = isHitting
@@ -111,7 +135,6 @@ class BmiActivity : AppCompatActivity() {
         return Point(vw.width / 2, vw.height / 2)
     }
 
-
     private fun addObject(model: Uri) {
         val frame = fragment.arSceneView.arFrame
         val pt = getScreenCenter()
@@ -138,7 +161,6 @@ class BmiActivity : AppCompatActivity() {
                 return@exceptionally null
             }
     }
-
 
     private fun addNodeToScene(fragment: ArFragment, anchor: Anchor, renderable: ModelRenderable) {
         val anchorNode = AnchorNode(anchor)

@@ -1,0 +1,225 @@
+{
+  materials: [
+    {
+      name: 'Knight',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'Knight_baseColor',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: null,
+        },
+        {
+          metallicFactor: 0,
+        },
+        {
+          roughnessFactor: 0.59999999999999998,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: null,
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+    {
+      name: 'Knight_0',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'Knight_0_baseColor',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: null,
+        },
+        {
+          metallicFactor: 0,
+        },
+        {
+          roughnessFactor: 0.59999999999999998,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: null,
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+    {
+      name: 'Knight_1',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'Knight_1_baseColor',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: null,
+        },
+        {
+          metallicFactor: 0,
+        },
+        {
+          roughnessFactor: 0.59999999999999998,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: null,
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/under/scene.gltf',
+    name: 'scene',
+    recenter: 'root',
+  },
+  samplers: [
+    {
+      file: 'sampledata/under/textures/Knight_1_baseColor.png',
+      name: 'Knight_1_baseColor',
+      pipeline_name: 'textures/Knight_1_baseColor.png',
+    },
+    {
+      file: 'sampledata/under/textures/Knight_0_baseColor.png',
+      name: 'Knight_0_baseColor',
+      pipeline_name: 'textures/Knight_0_baseColor.png',
+    },
+    {
+      file: 'sampledata/under/textures/Knight_baseColor.png',
+      name: 'Knight_baseColor',
+      pipeline_name: 'textures/Knight_baseColor.png',
+    },
+  ],
+  version: '0.54:2',
+}

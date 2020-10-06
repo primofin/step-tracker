@@ -72,3 +72,15 @@ sceneform.asset('sampledata/CupCake/CupCakeFinal2.obj', // 'Source Asset Path' s
         'default',                            // 'Material Path' specified during import.
         'sampledata/CupCake/CupCakeFinal2.sfa',         // '.sfa Output Path' specified during import.
         'src/main/assets/CupCakeFinal2')
+
+sceneform.asset('sampledata/fat_model/model.gltf', // 'Source Asset Path' specified during import.
+        'default',                            // 'Material Path' specified during import.
+        'sampledata/fat_model/model.sfa',         // '.sfa Output Path' specified during import.
+        'src/main/assets/model')
+
+sceneform.asset('sampledata/under/scene.gltf', // 'Source Asset Path' specified during import.
+        'default',                            // 'Material Path' specified during import.
+        'sampledata/under/scene.sfa',         // '.sfa Output Path' specified during import.
+        'src/main/assets/under')
+
+
