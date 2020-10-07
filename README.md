@@ -6,7 +6,7 @@ Step tracker is built for everyone who keeps moving all the day and wants to tra
 ## Install
 
 ### Run Only
-* Download the APK file in order to install [here](https://github.com)
+* Download the APK file in order to install [here](https://github.com/vynmetropolia/step-tracker/raw/master/app-debug.apk)
 ### Developer Mode
 * Clone the project
 * Create a Firebase Project [here](https://console.firebase.google.com/). Then you can follow the instruction to add Firebase to the application.
