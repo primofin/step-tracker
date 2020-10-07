@@ -1,4 +1,5 @@
 # STEP TRACKER 
+Step tracker is built for everyone who keeps moving all the day and wants to track their own step
 
 ## Screenshot
 
@@ -6,11 +7,12 @@
 * Clone the project an then run debug on your phone.
 * You can also download the APK file in order to install [here](https://github.com)
 
-## Features
+## Funtionality for end user
 * Count the step silently in foreground
 * Calculate the BMI for tracking personal health
 * Save data online through Google Firebase
 * Sync data among phones in realtime
+* Do logging by using Google Account
 
 ## Concepts implemented: 
 * Phone’s internal sensor(s) : **TYPE_STEP_COUNTER**
