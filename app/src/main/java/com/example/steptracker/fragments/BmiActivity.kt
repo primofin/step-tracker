@@ -13,7 +13,6 @@ import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.HitTestResult
 import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_bmi.*
@@ -64,15 +63,6 @@ class BmiActivity : AppCompatActivity() {
                 addObject(Uri.parse("model.sfb"))
             }
         }
-
-//        floatingActionButton.setOnClickListener {
-//            if(itentData ==="Normal"){
-//                addObject(Uri.parse("model.sfb"))
-//            }
-//            else if(itentData ==="Underweight"){
-//                addObject(Uri.parse("under.sfb"))
-//            }
-//        }
         showFab(false)
     }
 
