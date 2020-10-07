@@ -21,7 +21,6 @@ import com.example.steptracker.objects.DataObject.dateMap
 import com.example.steptracker.objects.DataObject.todayStep
 import com.example.steptracker.objects.DataObject.userHeight
 import com.example.steptracker.objects.DataObject.userWeight
-import com.example.steptracker.objects.InternalFileStorageManager
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.android.gms.auth.api.signin.GoogleSignIn
