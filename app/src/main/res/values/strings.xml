@@ -9,6 +9,7 @@
     <string name="stop">STOP</string>
     <string name="pause">PAUSE</string>
     <string name="isPaused">PAUSED</string>
+    <string name="mapLabel">Open tracking location map</string>
     <!--    strings used for report fragment-->
     <string name="report">Report</string>
     <string name="cReport">REPORT</string>
