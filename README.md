@@ -2,6 +2,7 @@
 Step tracker is built for everyone who keeps moving all the day and wants to track their own step
 
 ## Screenshot
+![alt text](https://raw.githubusercontent.com/vynmetropolia/step-tracker/master/screenshots/1.png "Screenshot 1")
 
 ## Install
 
