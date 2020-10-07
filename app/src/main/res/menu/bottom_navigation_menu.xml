@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/b1_today"
+        android:checkable="false"
+        android:icon="@drawable/ic_action_today"
+        android:title="@string/today"
+        android:visible="true" />
+    <item
+        android:id="@+id/b2_report"
+        android:icon="@drawable/ic_action_report"
+        android:title="@string/report"
+        android:visible="true" />
+    <item
+        android:id="@+id/b3_health"
+        android:icon="@drawable/ic_action_health"
+        android:title="@string/health"
+        android:visible="true" />
+    <item
+        android:id="@+id/b4_profile"
+        android:icon="@drawable/ic_action_profile"
+        android:title="@string/my_profile"
+        android:visible="true" />
+</menu>
