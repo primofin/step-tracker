@@ -1,4 +1,4 @@
-package com.example.steptracker
+package com.example.steptracker.fragments
 
 import android.graphics.Point
 import android.net.Uri
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.steptracker.R
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
@@ -13,7 +14,6 @@ import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.HitTestResult
 import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_bmi.*
@@ -47,32 +47,23 @@ class BmiActivity : AppCompatActivity() {
             onUpdate()
         }
         bmi_txt.text = intentData
-        if( intentData =="Obese"){
+        if (intentData == "Obese") {
             floatingActionButton.setOnClickListener {
-                    addObject(Uri.parse("model.sfb"))
+                addObject(Uri.parse("model.sfb"))
             }
-        }else if(intentData =="Underweight"){
+        } else if (intentData == "Underweight") {
             floatingActionButton.setOnClickListener {
                 addObject(Uri.parse("under.sfb"))
             }
-        }else if(intentData =="Normal"){
+        } else if (intentData == "Normal") {
             floatingActionButton.setOnClickListener {
                 addObject(Uri.parse("CupCakeFinal2.sfb"))
             }
-        }else if( intentData =="Overweight"){
+        } else if (intentData == "Overweight") {
             floatingActionButton.setOnClickListener {
                 addObject(Uri.parse("model.sfb"))
             }
         }
-
-//        floatingActionButton.setOnClickListener {
-//            if(itentData ==="Normal"){
-//                addObject(Uri.parse("model.sfb"))
-//            }
-//            else if(itentData ==="Underweight"){
-//                addObject(Uri.parse("under.sfb"))
-//            }
-//        }
         showFab(false)
     }
 
@@ -169,7 +160,7 @@ class BmiActivity : AppCompatActivity() {
         viewNode.setParent(anchorNode)
         fragment.arSceneView.scene.addChild(anchorNode)
         viewNode.select()
-        viewNode.setOnTapListener{ hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
+        viewNode.setOnTapListener { hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
             showFab(false)
         }
     }

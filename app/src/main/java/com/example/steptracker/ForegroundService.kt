@@ -27,20 +27,21 @@ class ForegroundService : Service(), StepListener, SensorEventListener {
     private val CHANNEL_ID = "ForegroundService"
 
     companion object {
+        //Start service when this function get called
         fun startService(context: Context, message: String) {
             val startIntent = Intent(context, ForegroundService::class.java)
             startIntent.putExtra("inputExtra", message)
             ContextCompat.startForegroundService(context, startIntent)
         }
 
+        //Stop service when this function get called
         fun stopService(context: Context) {
             val stopIntent = Intent(context, ForegroundService::class.java)
             context.stopService(stopIntent)
         }
     }
 
-    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-    }
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event!!.sensor.type == Sensor.TYPE_ACCELEROMETER) {
@@ -75,9 +76,7 @@ class ForegroundService : Service(), StepListener, SensorEventListener {
             sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
             SensorManager.SENSOR_DELAY_FASTEST
         )
-
         startForeground(1, notification)
-        //stopSelf();
         return START_NOT_STICKY
     }
 
@@ -105,13 +104,13 @@ class ForegroundService : Service(), StepListener, SensorEventListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun writeDataToFile() {
-        println(todayStep)
         val current = LocalDate.now()
         //mode private = rewrite the file. mode_append = add content to the file
         openFileOutput(stepFile, Context.MODE_PRIVATE).use {
             it.write("$todayStep\n".toByteArray())
             it.write("$current\n".toByteArray())    //also write day to compare
         }
+        //Check if the user logged in and push data to firebase
         if (isLogged) {
             dbReference.child(DataObject.account.id.toString()).child("Today Step")
                 .setValue(todayStep)
@@ -119,7 +118,6 @@ class ForegroundService : Service(), StepListener, SensorEventListener {
                 .setValue(current.toString())
             dbReference.child(DataObject.account.id.toString()).child("Daily Report")
                 .child(current.toString()).setValue(todayStep)
-
         }
     }
 

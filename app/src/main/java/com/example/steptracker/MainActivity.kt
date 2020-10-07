@@ -10,8 +10,6 @@ import com.example.steptracker.fragments.HealthFragment
 import com.example.steptracker.fragments.MoreFragment
 import com.example.steptracker.fragments.ReportFragment
 import com.example.steptracker.fragments.TodayFragment
-import com.example.steptracker.objects.DataObject.isLogged
-import com.example.steptracker.objects.InternalFileStorageManager
 import com.example.steptracker.objects.DataObject.isRunning
 import com.example.steptracker.objects.DataObject.reportDateFileList
 import com.example.steptracker.objects.DataObject.reportStepFileList
@@ -85,15 +83,11 @@ class MainActivity : AppCompatActivity() {
             ?.useLines { lines ->
                 lines.forEach { reportStepFileList.add(it) }    //Get a record
             }
-        println("step")
-        println(reportStepFileList)
+
         openFileInput(reportDateFile)?.bufferedReader()
             ?.useLines { lines ->
                 lines.forEach { reportDateFileList.add(it) }    //Get a record
             }
-        println("date")
-        println(reportDateFileList)
-
         openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }
         } //Store data in file to a list
@@ -124,14 +118,12 @@ class MainActivity : AppCompatActivity() {
                     ?.useLines { lines ->
                         lines.forEach { reportStepFileList.add(it) }    //Get a record
                     }
-                println("step")
-                println(reportStepFileList)
+
                 openFileInput(reportDateFile)?.bufferedReader()
                     ?.useLines { lines ->
                         lines.forEach { reportDateFileList.add(it) }    //Get a record
                     }
-                println("date")
-                println(reportDateFileList)
+
                 //Check if it is already 7 days in record
                 if (reportStepFileList.size > 7) {
                     reportStepFileList.remove(reportStepFileList.first())
