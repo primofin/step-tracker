@@ -4,6 +4,8 @@ Step tracker is built for everyone who keeps moving all the day and wants to tra
 ## Screenshot
 ![alt text](https://github.com/vynmetropolia/step-tracker/blob/master/screenshots/1.png "Screenshot 1")   ![alt text](https://raw.githubusercontent.com/vynmetropolia/step-tracker/master/screenshots/2.png "Screenshot 2")
 ![alt text](https://github.com/vynmetropolia/step-tracker/blob/master/screenshots/3.png "Screenshot 3")   ![alt text](https://raw.githubusercontent.com/vynmetropolia/step-tracker/master/screenshots/4.png "Screenshot 4")
+After clicking image in screen 3, the result will be showed:
+![alt text](https://github.com/vynmetropolia/step-tracker/blob/master/screenshots/5.png "Screenshot 5")
 
 ## Install
 
