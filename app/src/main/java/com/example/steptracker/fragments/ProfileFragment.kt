@@ -122,7 +122,6 @@ class MoreFragment : Fragment() {
     }
 
     private fun writeDataToFile(weight: Double, height: Double, gender: String) {
-
         //mode private = rewrite the file. mode_append = add content to the file
         requireActivity().openFileOutput(dataFile, Context.MODE_PRIVATE).use {
             it.write("${weight}\n".toByteArray())
@@ -218,7 +217,6 @@ class MoreFragment : Fragment() {
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
-
             //Listen for data change
             val menuListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -226,11 +224,9 @@ class MoreFragment : Fragment() {
                 }
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    dateMap.clear()
-                    //clear file to import data from firebase
-                    //activity!!.openFileOutput(InternalFileStorageManager.reportStepFile, Context.MODE_PRIVATE).use {}
-                    //activity!!.openFileOutput(InternalFileStorageManager.reportDateFile, Context.MODE_PRIVATE).use {}
-                    //Take the whole block of user data
+                    dateMap.clear() //Clear file to import data from firebase
+
+
                     val takenFireBaseData = dataSnapshot.value
                     userInfo = Gson().toJson(takenFireBaseData)
                     //Take daily report data
@@ -249,23 +245,7 @@ class MoreFragment : Fragment() {
                         val sortedMap =
                             convertedMap.toList().sortedBy { (value, _) -> value }.toMap()
                         //Import value to local object
-                        sortedMap.forEach { (k, v) ->
-                            dateMap[k.toString()] = v
-                            activity!!.openFileOutput(
-                                InternalFileStorageManager.reportStepFile,
-                                Context.MODE_APPEND
-                            ).use {
-                                it.write("$v\n".toByteArray())
-                            }
-                            activity!!.openFileOutput(
-                                InternalFileStorageManager.reportDateFile,
-                                Context.MODE_APPEND
-                            ).use {
-                                it.write("$k\n".toByteArray())
-                            }
-                            println("writting")
-                        }
-                        println("written")
+                        sortedMap.forEach { (k, v) -> dateMap[k.toString()] = v }
                     } catch (e: Exception) {
                     }
 
@@ -275,14 +255,6 @@ class MoreFragment : Fragment() {
                         if (takenDate == LocalDate.now().toString())
                             todayStep =
                                 Integer.parseInt(dataSnapshot.child("Today Step").value.toString())
-                        //mode private = rewrite the file. mode_append = add content to the file
-                        activity!!.openFileOutput(
-                            InternalFileStorageManager.stepFile,
-                            Context.MODE_PRIVATE
-                        ).use {
-                            it.write("$todayStep\n".toByteArray())
-                            it.write("${LocalDate.now()}\n".toByteArray())    //also write day to compare
-                        }
                     } catch (e: Exception) {
                     }
                     //Set weight
@@ -295,14 +267,7 @@ class MoreFragment : Fragment() {
                         userHeight = dataSnapshot.child("Height").value.toString()
                     } catch (e: Exception) {
                     }
-                    //Set gender
-                    try {
-                        if (dataSnapshot.child("Gender").value.toString() == "Male")
-                            sp_gender.setSelection(0)
-                        else
-                            sp_gender.setSelection(1)
-                    } catch (e: Exception) {
-                    }
+
                 }
             }
             (account.id?.let { it1 -> dbReference.child(it1) })?.addValueEventListener(menuListener)
@@ -317,4 +282,3 @@ class MoreFragment : Fragment() {
     }
 
 }
-

@@ -31,7 +31,7 @@
             android:label="@string/title_activity_map"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fragments.BmiActivity"
+            android:name=".BmiActivity"
             android:label="@string/title_activity_bmi"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">

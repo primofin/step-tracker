@@ -1,4 +1,4 @@
-package com.example.steptracker.fragments
+package com.example.steptracker
 
 import android.graphics.Point
 import android.net.Uri

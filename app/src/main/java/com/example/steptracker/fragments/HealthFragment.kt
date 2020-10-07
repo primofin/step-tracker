@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.example.steptracker.BmiActivity
 import com.example.steptracker.objects.InternalFileStorageManager.dataFile
 import com.example.steptracker.R
 import com.example.steptracker.objects.DataObject.isLogged
