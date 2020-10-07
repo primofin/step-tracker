@@ -228,14 +228,8 @@ class MoreFragment : Fragment() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     dateMap.clear()
                     //clear file to import data from firebase
-                    activity!!.openFileOutput(
-                        InternalFileStorageManager.reportStepFile,
-                        Context.MODE_PRIVATE
-                    ).use {}
-                    activity!!.openFileOutput(
-                        InternalFileStorageManager.reportDateFile,
-                        Context.MODE_PRIVATE
-                    ).use {}
+                    //activity!!.openFileOutput(InternalFileStorageManager.reportStepFile, Context.MODE_PRIVATE).use {}
+                    //activity!!.openFileOutput(InternalFileStorageManager.reportDateFile, Context.MODE_PRIVATE).use {}
                     //Take the whole block of user data
                     val takenFireBaseData = dataSnapshot.value
                     userInfo = Gson().toJson(takenFireBaseData)
@@ -269,7 +263,9 @@ class MoreFragment : Fragment() {
                             ).use {
                                 it.write("$k\n".toByteArray())
                             }
+                            println("writting")
                         }
+                        println("written")
                     } catch (e: Exception) {
                     }
 
@@ -299,7 +295,14 @@ class MoreFragment : Fragment() {
                         userHeight = dataSnapshot.child("Height").value.toString()
                     } catch (e: Exception) {
                     }
-
+                    //Set gender
+                    try {
+                        if (dataSnapshot.child("Gender").value.toString() == "Male")
+                            sp_gender.setSelection(0)
+                        else
+                            sp_gender.setSelection(1)
+                    } catch (e: Exception) {
+                    }
                 }
             }
             (account.id?.let { it1 -> dbReference.child(it1) })?.addValueEventListener(menuListener)
