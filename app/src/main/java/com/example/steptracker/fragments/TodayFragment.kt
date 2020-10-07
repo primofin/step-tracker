@@ -8,7 +8,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,8 +97,7 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
         return view
     }
 
-    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-    }
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event!!.sensor.type == Sensor.TYPE_ACCELEROMETER) {
@@ -118,6 +116,4 @@ class TodayFragment : Fragment(), SensorEventListener, StepListener {
         if (isOnScreen)
             circleTv.text = stepFileList[0]
     }
-
-
 }

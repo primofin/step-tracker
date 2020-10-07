@@ -10,8 +10,6 @@ import com.example.steptracker.fragments.HealthFragment
 import com.example.steptracker.fragments.MoreFragment
 import com.example.steptracker.fragments.ReportFragment
 import com.example.steptracker.fragments.TodayFragment
-import com.example.steptracker.objects.DataObject.isLogged
-import com.example.steptracker.objects.InternalFileStorageManager
 import com.example.steptracker.objects.DataObject.isRunning
 import com.example.steptracker.objects.DataObject.reportDateFileList
 import com.example.steptracker.objects.DataObject.reportStepFileList
@@ -39,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         openFileOutput(reportDateFile, Context.MODE_APPEND).use {}
         openFileOutput(stepFile, Context.MODE_APPEND).use {}
         readDataFromFile()
+
         val todayFragment = TodayFragment()
         val reportFragment = ReportFragment()
         val healthFragment = HealthFragment()
@@ -80,7 +79,15 @@ class MainActivity : AppCompatActivity() {
     private fun readDataFromFile() {
         reportDateFileList.clear()
         reportStepFileList.clear()
+        openFileInput(reportStepFile)?.bufferedReader()
+            ?.useLines { lines ->
+                lines.forEach { reportStepFileList.add(it) }    //Get a record
+            }
 
+        openFileInput(reportDateFile)?.bufferedReader()
+            ?.useLines { lines ->
+                lines.forEach { reportDateFileList.add(it) }    //Get a record
+            }
         openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }
         } //Store data in file to a list
@@ -111,10 +118,12 @@ class MainActivity : AppCompatActivity() {
                     ?.useLines { lines ->
                         lines.forEach { reportStepFileList.add(it) }    //Get a record
                     }
+
                 openFileInput(reportDateFile)?.bufferedReader()
                     ?.useLines { lines ->
                         lines.forEach { reportDateFileList.add(it) }    //Get a record
                     }
+
                 //Check if it is already 7 days in record
                 if (reportStepFileList.size > 7) {
                     reportStepFileList.remove(reportStepFileList.first())
