@@ -38,30 +38,26 @@ class HealthFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-            readDataFromFile()
+        readDataFromFile()
     }
 
     private fun readDataFromFile() {
-        if(!isLogged) {
+        if (!isLogged) {
             val dataFileList = mutableListOf<String>()
-        requireActivity().openFileOutput(dataFile, Context.MODE_APPEND).use {
-        }
-        requireActivity().openFileInput(dataFile)?.bufferedReader()
-            ?.useLines { lines ->
-                lines.forEach {
-                    dataFileList.add(
-                        it
-                    )
-                }
-                if (!dataFileList.isNullOrEmpty()) {
-                    remind_txt.text = resources.getString(R.string.instruction);
-                    weightValue.text = dataFileList[0]
-                    heightValue.text = dataFileList[1]
-                } else {
-                    remind_txt.text = resources.getString(R.string.remind);
-                }
+            requireActivity().openFileOutput(dataFile, Context.MODE_APPEND).use {
             }
+            requireActivity().openFileInput(dataFile)?.bufferedReader()
+                ?.useLines { lines ->
+                    lines.forEach {
+                        dataFileList.add(
+                            it
+                        )
+                    }
+                    if (!dataFileList.isNullOrEmpty()) {
+                        weightValue.text = dataFileList[0]
+                        heightValue.text = dataFileList[1]
+                    }
+                }
             requireActivity().openFileInput(dataFile)?.bufferedReader()
                 ?.useLines { lines ->
                     lines.forEach {
@@ -83,8 +79,11 @@ class HealthFragment : Fragment() {
     private fun calculateBMI() {
 
         if (weightValue.text.isNullOrEmpty() || heightValue.text.isNullOrEmpty()) {
+            remind_txt.text = resources.getString(R.string.remind);
+
             return
         }
+        remind_txt.text = resources.getString(R.string.instruction)
         val weight = weightValue.text.toString().toFloat()
         val height = heightValue.text.toString().toFloat()
         val bmi = (weight / (height * height / 10000))

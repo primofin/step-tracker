@@ -124,6 +124,7 @@ class MoreFragment : Fragment() {
     }
 
     private fun writeDataToFile(weight: Double, height: Double, gender: String) {
+
         //mode private = rewrite the file. mode_append = add content to the file
         requireActivity().openFileOutput(dataFile, Context.MODE_PRIVATE).use {
             it.write("${weight}\n".toByteArray())
@@ -234,6 +235,8 @@ class MoreFragment : Fragment() {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     dateMap.clear()
+                    activity!!.openFileOutput(InternalFileStorageManager.reportStepFile, Context.MODE_PRIVATE).use {}
+                    activity!!.openFileOutput(InternalFileStorageManager.reportDateFile, Context.MODE_PRIVATE).use {}
                     val takenFireBaseData = dataSnapshot.value
                     userInfo = Gson().toJson(takenFireBaseData)
                     //Take daily report data
@@ -252,7 +255,15 @@ class MoreFragment : Fragment() {
                         val sortedMap =
                             convertedMap.toList().sortedBy { (value, _) -> value }.toMap()
                         //Import value to local object
-                        sortedMap.forEach { (k, v) -> dateMap[k.toString()] = v }
+                        sortedMap.forEach { (k, v) ->
+                            dateMap[k.toString()] = v
+                            activity!!.openFileOutput(InternalFileStorageManager.reportStepFile, Context.MODE_APPEND).use {
+                                it.write("$v\n".toByteArray())
+                            }
+                            activity!!.openFileOutput(InternalFileStorageManager.reportDateFile, Context.MODE_APPEND).use {
+                                it.write("$k\n".toByteArray())
+                            }
+                        }
                     } catch (e: Exception) {
                     }
 

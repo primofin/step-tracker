@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         openFileOutput(reportDateFile, Context.MODE_APPEND).use {}
         openFileOutput(stepFile, Context.MODE_APPEND).use {}
         readDataFromFile()
+
         val todayFragment = TodayFragment()
         val reportFragment = ReportFragment()
         val healthFragment = HealthFragment()
@@ -80,6 +81,18 @@ class MainActivity : AppCompatActivity() {
     private fun readDataFromFile() {
         reportDateFileList.clear()
         reportStepFileList.clear()
+        openFileInput(reportStepFile)?.bufferedReader()
+            ?.useLines { lines ->
+                lines.forEach { reportStepFileList.add(it) }    //Get a record
+            }
+        println("step")
+        println(reportStepFileList)
+        openFileInput(reportDateFile)?.bufferedReader()
+            ?.useLines { lines ->
+                lines.forEach { reportDateFileList.add(it) }    //Get a record
+            }
+        println("date")
+        println(reportDateFileList)
 
         openFileInput(stepFile)?.bufferedReader()?.useLines { lines ->
             lines.forEach { stepFileList.add(it) }
@@ -111,10 +124,14 @@ class MainActivity : AppCompatActivity() {
                     ?.useLines { lines ->
                         lines.forEach { reportStepFileList.add(it) }    //Get a record
                     }
+                println("step")
+                println(reportStepFileList)
                 openFileInput(reportDateFile)?.bufferedReader()
                     ?.useLines { lines ->
                         lines.forEach { reportDateFileList.add(it) }    //Get a record
                     }
+                println("date")
+                println(reportDateFileList)
                 //Check if it is already 7 days in record
                 if (reportStepFileList.size > 7) {
                     reportStepFileList.remove(reportStepFileList.first())

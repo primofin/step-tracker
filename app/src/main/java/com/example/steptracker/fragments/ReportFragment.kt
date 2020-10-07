@@ -29,15 +29,16 @@ class ReportFragment : Fragment() {
         )
     }
 
-        var series = LineGraphSeries(
-            arrayOf(
-                DataPoint(0.toDouble(), 1.toDouble()),
-                DataPoint(1.toDouble(), 5.toDouble()),
-                DataPoint(2.toDouble(), 3.toDouble()),
-                DataPoint(3.toDouble(), 2.toDouble()),
-                DataPoint(4.toDouble(), 16.toDouble())
-            )
+    var series = LineGraphSeries(
+        arrayOf(
+            DataPoint(0.toDouble(), 1.toDouble()),
+            DataPoint(1.toDouble(), 5.toDouble()),
+            DataPoint(2.toDouble(), 3.toDouble()),
+            DataPoint(3.toDouble(), 2.toDouble()),
+            DataPoint(4.toDouble(), 16.toDouble())
         )
+    )
+
     @RequiresApi(Build.VERSION_CODES.O)
 
     override fun onCreateView(
@@ -52,16 +53,38 @@ class ReportFragment : Fragment() {
         //graphView.gridLabelRenderer.labelFormatter =
         //    DateAsXAxisLabelFormatter(context, graphFormatter)
         //graphView.value
-        var i=0.0 as Double
         var listMap = mutableListOf<DataPoint>()
         var listDate = mutableListOf<String>()
-        dateMap.forEach { (k, v) ->
-            listMap.add(DataPoint(i, v.toDouble()))
-            listDate.add(LocalDate.parse(k).dayOfMonth.toString()+"-"+LocalDate.parse(k).monthValue.toString())
-            i += 0.5
+        if (!dateMap.isNullOrEmpty()) {
+
+            var i = 0.0 as Double
+            dateMap.forEach { (k, v) ->
+                listMap.add(DataPoint(i, v.toDouble()))
+                listDate.add(LocalDate.parse(k).dayOfMonth.toString() + "-" + LocalDate.parse(k).monthValue.toString())
+                i += 0.5
+            }
+            println("chay cai nay 1")
+            println(listDate)
+        }else{
+
+            var i = 0.0 as Double
+            reportStepFileList.forEach{
+                listMap.add(DataPoint(i,it.toDouble()))
+                i += 0.5
+            }
+            reportDateFileList.forEach {
+                listDate.add(LocalDate.parse(it).dayOfMonth.toString() + "-" + LocalDate.parse(it).monthValue.toString())
+            }
+            println("chay cai nay 2")
+            println(listDate)
         }
-
-
+        if (listDate.isNullOrEmpty()){
+            println("chay cai nay 3")
+            println(listDate)
+            graphView.gridLabelRenderer.isVerticalLabelsVisible= false
+            graphView.gridLabelRenderer.isHorizontalLabelsVisible=false
+            return v
+        }
         graphView.addSeries(LineGraphSeries(listMap.toTypedArray()))
         graphView.viewport.isXAxisBoundsManual = true;
         graphView.gridLabelRenderer.setHumanRounding(true)
@@ -76,6 +99,7 @@ class ReportFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         readDataFromFile()
     }
 
