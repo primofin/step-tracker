@@ -9,6 +9,8 @@ Step tracker is built for everyone who keeps moving all the day and wants to tra
 
 ![alt text](https://github.com/vynmetropolia/step-tracker/blob/master/screenshots/5.png "Screenshot 5")
 
+Accessibility testing result [here](https://docs.google.com/document/d/1fFoN9Xw6fA2J0lvtcX9HGaoyrNsSERvd82P_NBBwV0c/edit)
+
 ## Install
 
 ### Run Only
