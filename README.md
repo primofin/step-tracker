@@ -12,7 +12,7 @@ Step tracker is built for everyone who keeps moving all the day and wants to tra
 * Create a Firebase Project [here](https://console.firebase.google.com/). Then you can follow the instruction to add Firebase to the application.
 * Create a realtime database by following this [instruction](https://firebase.google.com/docs/database/android/start)
 * Configure Google API and get your backend server's client ID by following this [instruction](https://developers.google.com/identity/sign-in/android/start-integrating)
-* Replace your web server client ID in this [file](https://github.com/vynmetropolia/step-tracker/blob/master/app/src/main/java/com/example/steptracker/fragments/ProfileFragment.kt)
+* Replace your web server client ID in this [file](https://github.com/vynmetropolia/step-tracker/blob/master/app/src/main/java/com/example/steptracker/fragments/ProfileFragment.kt#L99)
 > Remember to Create OAuth client ID both for Web Sever and Android Application. Then replace the tokenid by using the __Web Server Cliend ID__ to avoid error code 10
 
 * Build the application
