@@ -23,7 +23,6 @@ import com.example.steptracker.objects.DataObject.userHeight
 import com.example.steptracker.objects.DataObject.userWeight
 import com.example.steptracker.objects.InternalFileStorageManager
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.util.JSONPObject
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -36,7 +35,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.json.JSONObject
 import java.lang.Exception
 import java.time.LocalDate
 
@@ -219,21 +217,16 @@ class MoreFragment : Fragment() {
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
-            /*dbReference.child(googleId).child("Today").setValue(LocalDate.now().toString())
-            dbReference.child(googleId).child("Today Step").setValue(todayStep)
-            dbReference.child(googleId).child("Daily Report").child(LocalDate.now().toString())
-                .setValue(todayStep)*/
-
-            //fetch data from Firebase
-            println("cai deo gi the nay hmmm")
-
+            //Listen for data change
             val menuListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {
                     // handle error
                 }
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    dateMap.clear()
+                    dateMap.clear() //Clear file to import data from firebase
+
+
                     val takenFireBaseData = dataSnapshot.value
                     userInfo = Gson().toJson(takenFireBaseData)
                     //Take daily report data
@@ -262,11 +255,6 @@ class MoreFragment : Fragment() {
                         if (takenDate == LocalDate.now().toString())
                             todayStep =
                                 Integer.parseInt(dataSnapshot.child("Today Step").value.toString())
-                        //mode private = rewrite the file. mode_append = add content to the file
-                        activity!!.openFileOutput(InternalFileStorageManager.stepFile, Context.MODE_PRIVATE).use {
-                            it.write("$todayStep\n".toByteArray())
-                            it.write("${LocalDate.now()}\n".toByteArray())    //also write day to compare
-                        }
                     } catch (e: Exception) {
                     }
                     //Set weight
@@ -279,24 +267,6 @@ class MoreFragment : Fragment() {
                         userHeight = dataSnapshot.child("Height").value.toString()
                     } catch (e: Exception) {
                     }
-
-
-                    //todayStep = dataSnapshot.child("Today Step")
-                    //dateMap.forEach { (k, v) -> println(" hi $k $v") }
-                    //val testChild = dataSnapshot.child("Daily Report").value
-                    //val parsed = JSONObject(userInfo).get()
-                    //Log.d("test key formatted",takenDailyReportFormatted )
-                    //Log.d("test takenkey formatted",takenDailyReport.toString() )
-
-
-                    //for (i in 0 until dailyReportTaken.length()){
-
-                    //val takenMap = Gson().fromJson(dailyReportTaken,DailyReport::class.java)
-                    //val getDayTest = dailyReportTaken.getString("2020-10-03")
-                    //Log.d("test fb chung", userInfo)
-
-                    //Log.d("test fb getchild", testChild.toString() + "abc")
-
 
                 }
             }

@@ -1,9 +1,7 @@
 package com.example.steptracker.fragments
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,15 +36,13 @@ class HealthFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
             readDataFromFile()
     }
 
     private fun readDataFromFile() {
-        if(!isLogged) {
+        if(!isLogged) { //if logged, use firebase data
             val dataFileList = mutableListOf<String>()
-        requireActivity().openFileOutput(dataFile, Context.MODE_APPEND).use {
-        }
+            //Read data to a list
         requireActivity().openFileInput(dataFile)?.bufferedReader()
             ?.useLines { lines ->
                 lines.forEach {
@@ -62,18 +58,6 @@ class HealthFragment : Fragment() {
                     remind_txt.text = resources.getString(R.string.remind);
                 }
             }
-            requireActivity().openFileInput(dataFile)?.bufferedReader()
-                ?.useLines { lines ->
-                    lines.forEach {
-                        dataFileList.add(
-                            it
-                        )
-                    }
-                    if (!dataFileList.isNullOrEmpty()) {
-                        userWeight = dataFileList[0]
-                        userHeight = dataFileList[1]
-                    }
-                }
         }
         weightValue.text = userWeight
         heightValue.text = userHeight
