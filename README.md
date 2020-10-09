@@ -1,5 +1,5 @@
 # Step Tracker
-_An android app is built mainly for everyone who keeps moving all the day and wants to track his/her own steps. In addition, it was added some interesting features like data visualizing, syncing data, etc._
+_An android app is built mainly for someone who keeps moving all the day and wants to track his/her own steps. In addition, it was added some interesting features like data visualizing, syncing data, etc._
 
 ## Screenshot
 ![alt text](https://github.com/vynmetropolia/step-tracker/blob/master/screenshots/1.png "Screenshot 1")   ![alt text](https://raw.githubusercontent.com/vynmetropolia/step-tracker/master/screenshots/2.png "Screenshot 2")
