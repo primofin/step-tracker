@@ -1,5 +1,5 @@
 # Step Tracker
-Step tracker is built for everyone who keeps moving all the day and wants to track their own step
+_An android app is built mainly for everyone who keeps moving all the day and wants to track his/her own steps. In addition, it was added some interesting features like data visualizing, syncing data, etc._
 
 ## Screenshot
 ![alt text](https://github.com/vynmetropolia/step-tracker/blob/master/screenshots/1.png "Screenshot 1")   ![alt text](https://raw.githubusercontent.com/vynmetropolia/step-tracker/master/screenshots/2.png "Screenshot 2")
@@ -9,7 +9,7 @@ Step tracker is built for everyone who keeps moving all the day and wants to tra
 
 ![alt text](https://github.com/vynmetropolia/step-tracker/blob/master/screenshots/5.png "Screenshot 5")
 
-Accessibility testing result [here](https://docs.google.com/document/d/1fFoN9Xw6fA2J0lvtcX9HGaoyrNsSERvd82P_NBBwV0c/edit)
+**Accessibility testing result** [here](https://docs.google.com/document/d/1fFoN9Xw6fA2J0lvtcX9HGaoyrNsSERvd82P_NBBwV0c/edit)
 
 ## Install
 
@@ -27,11 +27,11 @@ Accessibility testing result [here](https://docs.google.com/document/d/1fFoN9Xw6
 
 ## Features
 * Tracking daily steps
-* Calculate the BMI for tracking personal health and give the result interpretation
+* Calculating the BMI for tracking personal health and give the result interpretation
 * Running app in foreground
-* Save data online through Google Firebase
-* Sync data among phones in realtime
-* Do logging by using Google Account
+* Saving data online through Google Firebase
+* Syncing data among phones in realtime
+* Using `Google` service to authenticate
 * Visualizing user’s steps in the recent days by graph
 
 ## Concepts implemented: 
